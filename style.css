@@ -263,3 +263,81 @@ h1, h2, h3 {
     background-color: #00BFFF;
     color: #121418;
 }
+/* --- 8. Contact 페이지 스타일 --- */
+.contact-container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.contact-container h1 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.contact-container p {
+    font-size: 1.2em;
+    color: #B0B0B0;
+    margin-bottom: 50px;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    background-color: #1A1C20;
+    border: 1px solid #333;
+    border-radius: 10px;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.contact-button:hover {
+    transform: translateY(-5px);
+    border-color: #00BFFF;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.contact-button span:first-child {
+    /* "Email", "GitHub" 텍스트 */
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.contact-button span:last-child {
+    /* "bmw5779@gmail.com" 텍스트 */
+    font-size: 1.1em;
+    color: #00BFFF;
+}
+
+/* 버튼별 아이콘 색상 (선택사항이지만, 구분을 위해) */
+.contact-button.email:hover {
+    border-color: #EA4335; /* Gmail Red */
+}
+.contact-button.email span:last-child {
+    color: #EA4335;
+}
+
+.contact-button.github:hover {
+    border-color: #FFFFFF; /* GitHub White */
+}
+.contact-button.github span:last-child {
+    color: #FFFFFF;
+}
+
+.contact-button.linkedin:hover {
+    border-color: #0A66C2; /* LinkedIn Blue */
+}
+.contact-button.linkedin span:last-child {
+    color: #0A66C2;
+}
