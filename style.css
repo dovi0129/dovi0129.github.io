@@ -480,3 +480,131 @@ h1, h2, h3 {
     color: #00BFFF;
     font-weight: 700;
 }
+/* --- 13. System Architecture Diagram (HTML) --- */
+.arch-diagram {
+    background: #f9f9f9; /* 밝은 배경 */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 25px;
+    margin-top: 30px;
+    text-align: center;
+    color: #333;
+}
+
+/* 상단 (Jetson) */
+.arch-tier.top {
+    border: 2px solid #555;
+    border-radius: 10px;
+    padding: 15px;
+    max-width: 300px;
+    margin: 0 auto 25px auto;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+.arch-tier.top span {
+    display: block;
+    font-size: 0.8em;
+    font-weight: 400;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* 하단 3개 모듈 (탐지, 제어, 앱) */
+.arch-tier.bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* 3열 */
+    gap: 20px;
+}
+
+.arch-module {
+    border-radius: 10px;
+    padding: 20px;
+}
+.arch-module h3 { /* 파트 제목 (탐지 파트 ...) */
+    margin: 0 0 15px 0;
+    font-size: 1.3em;
+    color: #000;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+}
+.arch-module ul { /* 기능 목록 */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.arch-module li { /* 기능 아이템 */
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 0.95em;
+    color: #333;
+    font-weight: 700;
+}
+
+/* 색상 지정 */
+.arch-module.vision { background-color: #e6f7ff; border: 2px solid #b3e0ff; }
+.arch-module.control { background-color: #fff0f0; border: 2px solid #ffcccc; }
+.arch-module.app { background-color: #f0fff0; border: 2px solid #ccffcc; }
+
+
+/* --- 14. Motivation Diagram (HTML) --- */
+.motivation-diagram {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2열 */
+    gap: 25px;
+    margin-top: 30px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.motivation-box {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+}
+.motivation-box h3 { /* "농가 인구 감소..." */
+    text-align: center;
+    margin: 0 0 20px 0;
+    font-size: 1.3em;
+    color: #333;
+}
+.motivation-sub-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+.motivation-item {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 20px 15px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.motivation-item span { /* "농가 인구 감소", "숙성도 판단 오류" */
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #222;
+    display: block;
+    margin-bottom: 8px;
+}
+.motivation-item p { /* "지속적 감소 추세" */
+    font-size: 0.9em;
+    color: #777;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* (모바일 반응형) 화면이 768px보다 작아지면 1열로 변경 */
+@media (max-width: 768px) {
+    .arch-tier.bottom, .motivation-diagram, .motivation-sub-grid {
+        grid-template-columns: 1fr; /* 모두 1열로 변경 */
+    }
+}
