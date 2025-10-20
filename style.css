@@ -118,3 +118,148 @@ h1, h2, h3 {
     margin-top: 20px;
     font-weight: 700;
 }
+
+/* --- 5. About 페이지 스타일 --- */
+
+/* 현재 활성화된 메뉴 스타일 */
+.navbar-menu a.active {
+    color: #00BFFF;
+    font-weight: 700;
+}
+
+.about-container {
+    max-width: 900px; /* Projects보다 조금 좁게 */
+    margin: 40px auto;
+    padding: 0 20px;
+    line-height: 1.7;
+}
+
+.about-container h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.about-intro {
+    font-size: 1.2em;
+    text-align: center;
+    color: #E0E0E0;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.about-keywords {
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #00BFFF;
+    margin-bottom: 30px;
+}
+
+.resume-button {
+    display: block;
+    width: 200px;
+    margin: 30px auto 50px auto;
+    padding: 12px 20px;
+    background-color: #00BFFF;
+    color: #121418; /* 어두운 배경색 */
+    text-align: center;
+    font-weight: 700;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.resume-button:hover {
+    background-color: #FFFFFF;
+    color: #121418;
+    transform: scale(1.05);
+}
+
+.about-container h2 {
+    font-size: 2em;
+    border-bottom: 2px solid #00BFFF;
+    padding-bottom: 10px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+/* --- 6. 타임라인 스타일 --- */
+.timeline {
+    position: relative;
+    /* 타임라인 중앙선 */
+    border-left: 3px solid #00BFFF;
+    padding-left: 30px;
+    margin-left: 15px;
+}
+
+.timeline-item {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+/* 타임라인 아이템 점 */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -40px; /* 중앙선보다 왼쪽으로 */
+    top: 5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #00BFFF;
+    border: 3px solid #121418;
+}
+
+.timeline-date {
+    color: #E0E0E0;
+    font-weight: 700;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.timeline-content h3 {
+    font-size: 1.3em;
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #FFFFFF;
+}
+
+.timeline-content p {
+    margin-top: 0;
+    color: #B0B0B0;
+}
+
+/* --- 7. 기술 스택 스타일 --- */
+.tech-stack-container {
+    padding: 10px;
+}
+
+.tech-stack-container h3 {
+    font-size: 1.3em;
+    color: #E0E0E0;
+    font-weight: 400;
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px;
+}
+
+.tech-tags {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tech-tags span {
+    background-color: #2a2d34;
+    color: #E0E0E0; /* Projects 태그보다 연하게 */
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.95em;
+    transition: all 0.3s ease;
+}
+
+.tech-tags span:hover {
+    background-color: #00BFFF;
+    color: #121418;
+}
