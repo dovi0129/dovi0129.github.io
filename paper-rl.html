@@ -22,16 +22,14 @@
     </header>
 
     <main class="project-detail-container">
-        <h1>PaperRL: A Three-Stage RL Pipeline for Autonomous Papermaking</h1>
-        
+        <h1>PaperRL: Autonomous Papermaking Process Control</h1>
+
         <div class="project-detail-grid">
             <aside class="project-detail-nav">
                 <h3>Project Sections</h3>
                 <ul>
                     <li><a href="#overview">Overview</a></li>
-                    <li><a href="#key-features">Key Features</a></li>
-                    <li><a href="#outcome">Quantitative Results</a></li>
-                    <li><a href="#tech-stack">Tech Stack</a></li>
+                    <li><a href="#outcome">Key Results</a></li>
                 </ul>
                 <a href="https://github.com/dovi0129/papermaking-rl-industrial-strategies" target="_blank" class="github-button">View on GitHub</a>
             </aside>
@@ -40,70 +38,38 @@
                 <section id="overview">
                     <h2>Overview</h2>
                     <p>
-                        제지 공정과 같은 복잡한 연속 제조 공정의 최적화는 생산성, 품질, 환경 영향(에너지 효율) 간의 Pareto 최적 균형을 찾아야 하는 다중 목표 과제입니다. [cite: 4]
+                        제지 공정과 같은 복잡한 연속 제조 공정의 최적화는 생산성, 품질, 에너지 효율 간의 균형을 찾아야 하는 다중 목표 과제입니다.
                     </p>
                     <p>
-                        본 연구는 제지 공정의 자율 제어를 위한 실용적인 3단계 강화학습(RL) 프레임워크를 제안합니다. [cite: 5] 이 프레임워크는 실제 산업 데이터의 변동성 문제를 해결하고, 경제적 성과와 환경적 영향을 분리하는 것을 목표로 합니다. [cite: 4, 9]
+                        본 프로젝트는 강화학습(RL)을 기반으로 제지 공정의 자율 제어 에이전트를 개발하여, 경제적 성과와 환경적 영향을 동시에 개선하는 것을 목표로 했습니다.
                     </p>
-                </section>
-
-                <section id="key-features">
-                    <h2>Key Features</h2>
-                    
-                    <h3>1. Hybrid Digital Twin</h3>
-                    <p>
-                        물리 기반 모델(질량 보존 법칙)과 데이터 기반 예측 모델(XGBoost)을 통합한 하이브리드 디지털 트윈을 구축했습니다. [cite: 6, 29] 이는 실제 공정에서의 높은 훈련 비용과 안전 위험을 완화하고, 샘플 효율성을 향상시키는 안전한 테스트베드 역할을 합니다. [cite: 6, 28]
-                    </p>
-
-                    <h3>2. Advanced Reward Shaping</h3>
-                    <p>
-                        지역 최적해(local optimum) 문제를 극복하기 위해 정교한 보상 설계 기법을 개발했습니다. [cite: 7] 공정 단계를 '초기-중기-후기' 3단계로 나누고, 각 단계의 목표(품질 안정화 → 생산 극대화 → 품질 유지)에 맞게 보상 가중치를 동적으로 조절합니다. [cite: 32, 33] 또한 가우시안 보상 함수를 사용하여 조밀하고 안정적인 학습 신호를 제공합니다. [cite: 7]
-                    </p>
-
-                    <h3>3. Three-Stage Learning Pipeline</h3>
-                    <p>
-                        전문가 성능을 뛰어넘기 위해 3단계 학습 파이프라인을 도입했습니다. [cite: 8]
-                        <br><b>1단계 (Expert Data):</b> 내부 시뮬레이션을 수행하는 모델 기반 Greedy 정책으로 고품질 전문가 데이터를 생성합니다. [cite: 38, 200]
-                        <br><b>2단계 (BC Init):</b> Behavioral Cloning (BC)을 통해 전문가의 지식을 에이전트에게 빠르게 전달(warm-start)합니다. [cite: 8, 39]
-                        <br><b>3단계 (PPO Fine-tuning):</b> BC로 사전 학습된 정책을 PPO 알고리즘으로 미세 조정하여, 전문가를 능가하는 '초월적(supra-optimal)' 전략을 탐색합니다. [cite: 8, 40]
+                    <p class="status-warning">
+                        <b>[Status]</b>
+                        <br>
+                        본 프로젝트의 핵심 방법론은 현재 <b>AAAI 2026을 포함한 주요 AI 학회에 '익명 심사(Double-Blind Review)'가 진행 중</b>입니다.
+                        <br>
+                        학회 규정 준수를 위해, 논문 게재가 승인된 이후 상세한 방법론을 공개할 예정입니다.
                     </p>
                 </section>
                 
                 <section id="outcome">
-                    <h2>Quantitative Results</h2>
+                    <h2>Key Results</h2>
                     <p>
-                        학습된 RL 에이전트는 기존 과거 운전 데이터 평균 대비 복합적인 성과 향상을 달성했습니다. (Table 1) [cite: 233]
+                        개발된 RL 에이전트는 기존 과거 운전 데이터 평균 대비 다음과 같은 복합적인 성과 향상을 달성했습니다.
                     </p>
                     <ul>
-                        <li><b>생산성 +8.28%</b>: 평균 생산 속도(Speed) 및 스톡 흐름(Stock Flow) 증가 [cite: 240]</li>
-                        <li><b>에너지 -39.78%</b>: 에너지 소비의 핵심 지표인 후건조기 압력(After-dryer Pressure) 대폭 감소 [cite: 240]</li>
-                        <li><b>품질 유지</b>: 핵심 품질 지표인 평량(Basis Weight)과 수분(Moisture)을 허용 범위 내에서 안정적으로 유지 [cite: 241]</li>
+                        <li><b>생산성 +8.28%</b> (평균 생산 속도 및 스톡 흐름 증가)</li>
+                        <li><b>에너지 -39.78%</b> (후건조기 압력 대폭 감소)</li>
+                        <li><b>품질 유지</b> (핵심 품질 지표를 허용 범위 내에서 안정적으로 유지)</li>
                     </ul>
                     <p>
-                        정의된 보상 함수 기준으로, 에이전트의 누적 보상 점수(-2.36)는 과거 운전 평균(-3387.20) 대비 <b>99.93%</b> 향상되었습니다. [cite: 246, 247]
+                        정의된 보상 함수 기준으로, 에이전트의 누적 보상 점수는 과거 운전 평균(-3387.20) 대비 <b>99.93%</b> 향상되었습니다. [cite: 349, 358]
                     </p>
-                </section>
-
-                <section id="tech-stack">
-                    <h2>Tech Stack</h2>
-                    <p>프로젝트에 사용된 핵심 기술 스택입니다.</p>
-                    <div class="tech-tags">
-                        <span>Python</span>
-                        <span>PyTorch</span>
-                        <span>Gymnasium</span>
-                        <span>Stable-Baselines3</span>
-                        <span>XGBoost</span>
-                        <span>PPO</span>
-                        <span>Behavioral Cloning</span>
-                        <span>NumPy</span>
-                        <span>Pandas</span>
-                    </div>
                 </section>
                 
                 <a href="index.html" class="back-to-projects">← Back to All Projects</a>
             </article>
         </div>
     </main>
-
 </body>
 </html>
