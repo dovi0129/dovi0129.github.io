@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project: StrawberryDection - Minu Baek</title>
+    <title>Project: Strawberry Harvest AI - Minu Baek</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,7 @@
     </header>
 
     <main class="project-detail-container">
-        <h1>strawberryDection: 딸기 숙도 분류 및 수확 보조</h1>
+        <h1>strawberry-harvest-ai: 딸기 숙도 분류 및 수확 로봇 시스템</h1>
         
         <div class="project-detail-grid">
             <aside class="project-detail-nav">
@@ -39,10 +39,10 @@
                 <section id="overview">
                     <h2>Overview (Capstone Design)</h2>
                     <p>
-                        'strawberryDection'은 캡스톤 디자인 프로젝트로, 컴퓨터 비전과 로보틱스 기술을 결합하여 딸기 수확 보조 시스템을 구축하는 것을 목표로 했습니다.
+                        'strawberry-harvest-ai'는 캡스톤 디자인 프로젝트로, 컴퓨터 비전과 로보틱스 기술을 결합하여 딸기 수확 보조 시스템을 구축하는 것을 목표로 했습니다.
                     </p>
                     <p>
-                        카메라(Intel RealSense)를 통해 입력된 영상에서 딸기를 탐지하고 숙도를 3단계(설익음, 익음, 과숙)로 분류한 뒤, 로봇팔(OpenMANIPULATOR-X)이 자동으로 익은 딸기만 수확하도록 '탐지-판단-제어' 파이프라인을 통합 구현했습니다.
+                        Intel RealSense 카메라로 딸기를 탐지하고 숙도를 3단계(설익음, 익음, 과숙)로 분류한 뒤, ROS(Robot Operating System)를 기반으로 로봇팔(Indy7, OpenMANIPULATOR-X)이 자동으로 익은 딸기만 수확하도록 '탐지-판단-제어' 파이프라인을 통합 구현했습니다.
                     </p>
                 </section>
 
@@ -51,12 +51,12 @@
                     
                     <h3>1. Ripeness Classification (Detection)</h3>
                     <p>
-                        [여기에 탐지 모델에 대한 상세 내용을 적어주세요. 예: YOLOv8 또는 커스텀 CNN 모델을 사용하여...]
+                        Intel RealSense D455 카메라를 통해 획득한 RGB 및 Depth 데이터를 사용하여 딸기를 탐지합니다. [여기에 탐지 모델(예: YOLOv8)에 대한 상세 내용을 적어주세요.]
                     </p>
 
-                    <h3>2. Robotic Arm Control (Control)</h3>
+                    <h3>2. Robotic Arm Control (Control Stack)</h3>
                     <p>
-                        탐지된 딸기의 3D 좌표를 기반으로 로봇팔 제어 알고리즘을 구현했습니다. ROS(Robot Operating System)를 통해 Jetson Nano와 로봇팔 간의 통신 및 실시간 제어 로직을 수행합니다.
+                        탐지된 딸기의 3D 좌표를 기반으로 로봇팔 제어 알고리즘을 구현했습니다. NVIDIA Jetson Nano에서 ROS를 통해 Indy7 (TCP/IP) 및 OpenMANIPULATOR-X (UART TTL) 로봇팔과의 통신 및 실시간 제어 로직을 수행합니다.
                     </p>
                 </section>
 
@@ -69,8 +69,10 @@
                         <span>ROS</span>
                         <span>NVIDIA Jetson</span>
                         <span>Intel RealSense</span>
+                        <span>Indy7</span>
+                        <span>OpenMANIPULATOR-X</span>
                         <span>Python</span>
-                        </div>
+                    </div>
                 </section>
                 
                 <a href="index.html" class="back-to-projects">← Back to All Projects</a>
