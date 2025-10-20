@@ -24,6 +24,7 @@
     <main class="project-detail-container">
         <h1>strawberry-harvest-ai: 딸기 숙도 분류 및 수확 로봇 시스템</h1>
         
+        <!-- 시스템 아키텍처 (HTML) -->
         <div class="arch-diagram">
             <div class="arch-tier top">
                 Jetson Orin Nano
@@ -62,26 +63,27 @@
 
 
         <div class="project-detail-grid">
+            <!-- 1. 왼쪽: 고정 목차 (수정) -->
             <aside class="project-detail-nav">
                 <h3>Project Sections</h3>
                 <ul>
                     <li><a href="#overview">Overview</a></li>
-                    <li><a href="#features">Key Features</a></li>
+                    <li><a href="#detection">Detection Part</a></li>
+                    <li><a href="#control">Control Part</a></li>
+                    <li><a href="#app">App Part</a></li>
+                    <li><a href="#outcome">Outcome</a></li>
                     <li><a href="#tech-stack">Tech Stack</a></li>
                 </ul>
                 <a href="https://github.com/dovi0129/strawberry-harvest-ai" target="_blank" class="github-button">View on GitHub</a>
             </aside>
 
+            <!-- 2. 오른쪽: 상세 내용 (수정) -->
             <article class="project-detail-content">
                 <section id="overview">
                     <h2>Overview (Capstone Design)</h2>
                     <p>
-                        'strawberry-harvest-ai'는 캡스톤 디자인 프로젝트로, 컴퓨터 비전과 로보틱스 기술을 결합하여 딸기 수확 보조 시스템을 구축하는 것을 목표로 했습니다.
+                        'strawberry-harvest-ai'는 캡스톤 디자인 프로젝트로, 컴퓨터 비전과 로보틱스 기술을 결합하여 딸기 수확 보조 시스템을 구축하는 것을 목표로 했습니다. 농가 인구 감소 및 고령화 문제와 기존 수작업의 비효율(숙도 판단 오류, 과실 손상 등)을 해결하고자, 단일 엣지 컴퓨팅(Jetson) 구조의 경량화된 저비용 실시간 시스템을 제안합니다.
                     </p>
-                    <p>
-                        Intel RealSense 카메라로 딸기를 탐지하고 숙도를 3단계(설익음, 익음, 과숙)로 분류한 뒤, ROS(Robot Operating System)를 기반으로 로봇팔(Indy7, OpenMANIPULATOR-X)이 자동으로 익은 딸기만 수확하도록 '탐지-판단-제어' 파이프라인을 통합 구현했습니다.
-                    </p>
-                    
                     <div class="motivation-diagram">
                         <div class="motivation-box">
                             <h3>농가 인구 감소 및 고령화</h3>
@@ -118,25 +120,22 @@
                             </div>
                         </div>
                     </div>
-                     <p style="text-align: center; font-style: italic; color: #B0B0B0; margin-top: 10px; font-size: 0.9em;">
-                        <b>Project Motivation:</b> 농가 인구 감소 문제와 기존 수작업의 비효율을 해결하고자 했습니다.
-                    </p>
                 </section>
 
-                <section id="features">
-                    <h2>Key Features</h2>
-                    
-                    <h3>1. Ripeness Classification (Detection)</h3>
+                <section id="detection">
+                    <h2>Key Features 1: Detection Part</h2>
                     <p>
-                        입력된 RGB 이미지에서 딸기 영역(Segmentation)을 먼저 검출합니다. 이후 각 딸기 영역의 픽셀을 RGB에서 HSV 색 공간으로 변환하고, H(색상) 값을 분석하여 빨간색 픽셀의 비율을 계산합니다. 이 비율을 기준으로 딸기의 숙성도를 3단계(설익음, 익음, 과숙)로 분류합니다.
+                        Intel RealSense 카메라의 RGB/Depth 프레임을 입력받아 딸기 검출, 숙성도 분류, 가려짐 여부 판단, 기울기 계산 등을 수행하여 3차원 수확 지점 좌표를 생성합니다.
                     </p>
-                    
+                    <p>
+                        숙성도 분류는 RGB 이미지를 HSV 색 공간으로 변환하고, H(색상) 값을 이용해 빨간색 픽셀의 비율을 계산하여 3단계(미숙/익음/과숙)로 분류하는 알고리즘을 사용합니다.
+                    </p>
                     <div class="image-grid-2col">
                         <div class="grid-item">
                             <div class="project-demo no-bg">
-                                <img src="strawberry_bbox.png" alt="Strawberry Segmentation Result">
+                                <img src="strawberry_segmentation.png" alt="Strawberry Segmentation Result">
                             </div>
-                            <p><b>[Detection]</b> 딸기 영역 검출(BBox) 결과</p>
+                            <p><b>[Detection]</b> 딸기 영역 검출(Segmentation) 결과</p>
                         </div>
                         <div class="grid-item">
                             <div class="project-demo" style="padding: 20px; box-sizing: border-box; height: 100%;">
@@ -145,16 +144,16 @@
                             <p><b>[Logic]</b> RGB-HSV 변환 기반의 숙성도 분류 알고리즘</p>
                         </div>
                     </div>
+                </section>
 
-
-                    <h3 style="margin-top: 40px;">2. Robotic Arm Control (Control Stack)</h3>
+                <section id="control">
+                    <h2>Key Features 2: Control Part</h2>
                     <p>
-                        분류 결과 '익음'으로 판단된 딸기들에 대해, Depth 데이터를 활용하여 각 딸기까지의 3D 거리와 수확을 위한 접근 각도를 계산합니다. 이 좌표 데이터는 NVIDIA Jetson Nano에서 ROS 토픽으로 발행(publish)됩니다.
+                        탐지 파트에서 생성된 수확 좌표를 입력받아 로봇팔을 해당 위치로 이동시키고, 엔드 이펙터(로봇 손)로 수확을 수행합니다.
                     </p>
                     <p>
-                        제어 노드(Node)는 이 좌표를 구독(subscribe)하여 Indy7 (TCP/IP) 및 OpenMANIPULATOR-X (UART TTL) 로봇팔을 구동시킬 Gripper/Joint 제어 명령(CMD)을 생성하고 전송합니다.
+                        이 과정에서 카메라 픽셀 좌표(u,v,z)를 로봇의 End-Effector 및 Global 좌표계로 변환하는 복잡한 좌표계/행렬 변환(Deprojection, Affine Transformation) 과정이 포함됩니다.
                     </p>
-                    
                     <div class="image-grid-2col">
                         <div class="grid-item">
                             <div class="project-demo" style="background: #fff; border: 1px solid #333;">
@@ -169,12 +168,22 @@
                             <p><b>[Action]</b> 탐지된 딸기 좌표로 로봇팔이 이동한 실제 동작 모습</p>
                         </div>
                     </div>
-                    
-                    <div class="project-demo" style="border: 1px solid #333; margin-top: 20px;">
-                        <img src="strawberry_depth_angle.png" alt="Depth and Angle Estimation">
-                    </div>
-                    <p style="text-align: center; font-style: italic; color: #B0B0B0; margin-top: 10px; font-size: 0.9em;">
-                        <b>[Control]</b> Depth 카메라를 이용한 수확 지점 거리 및 각도 추정
+                </section>
+
+                <section id="app">
+                    <h2>Key Features 3: App Part (GrowVision)</h2>
+                    <p>
+                        사용자가 원격으로 수확 과정을 모니터링하고 데이터를 관리할 수 있는 'GrowVision' 앱을 개발했습니다.
+                    </p>
+                    <p>
+                        앱은 RTSP/Firebase를 통해 Jetson과 통신하며, 실시간 카메라 스트리밍, 누적/기록 당시의 수확 로그(총 개수, 익은 비율 등), 그리고 현재 수확 현황을 시각적으로 제공합니다.
+                    </p>
+                </section>
+
+                <section id="outcome">
+                    <h2>Outcome & Expected Effects</h2>
+                    <p>
+                        본 프로젝트를 통해 노동력 절감 및 생산성 향상, 품질 균일화 및 손상 감소, 그리고 스마트팜 기술 발전 촉진 등의 기대 효과를 가집니다.
                     </p>
                 </section>
 
@@ -191,6 +200,7 @@
                         <span>OpenMANIPULATOR-X</span>
                         <span>Python</span>
                         <span>OpenCV</span>
+                        <span>Firebase</span>
                     </div>
                 </section>
                 
@@ -198,6 +208,5 @@
             </article>
         </div>
     </main>
-
 </body>
 </html>
