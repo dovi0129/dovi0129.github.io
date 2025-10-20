@@ -24,6 +24,41 @@
     <main class="project-detail-container">
         <h1>strawberry-harvest-ai: 딸기 숙도 분류 및 수확 로봇 시스템</h1>
         
+        <div class="system-diagram">
+            
+            <div class="diagram-col">
+                <div class="diagram-node">Intel RealSense D455</div>
+            </div>
+            
+            <div class="diagram-arrow">
+                <span>RGB / Depth Frame</span>
+                &rarr;
+            </div>
+
+            <div class="diagram-col middle">
+                <div class="diagram-node">Strawberry Detection (Vision)</div>
+                <div class="diagram-arrow vertical">
+                    <span>Target Coordinate Data</span>
+                    &darr;
+                </div>
+                <div class="diagram-node">NVIDIA Jetson (Control)</div>
+            </div>
+            
+            <div class="diagram-arrow">
+                <span>Gripper / Joint CMD</span>
+                &rarr;
+            </div>
+
+            <div class="diagram-col">
+                <div class="diagram-node">OpenMANIPULATOR-X</div>
+                <div class="diagram-node">Indy7</div>
+            </div>
+        </div>
+        <p style="text-align: center; font-style: italic; color: #B0B0B0; margin-top: 10px; font-size: 0.9em;">
+            <b>System Architecture:</b> RealSense로 프레임을 입력받아 Jetson에서 처리 후 로봇팔로 제어 명령 전달
+        </p>
+
+
         <div class="project-detail-grid">
             <aside class="project-detail-nav">
                 <h3>Project Sections</h3>
@@ -51,12 +86,34 @@
                     
                     <h3>1. Ripeness Classification (Detection)</h3>
                     <p>
-                        Intel RealSense D455 카메라를 통해 획득한 RGB 및 Depth 데이터를 사용하여 딸기를 탐지합니다. [여기에 탐지 모델(예: YOLOv8)에 대한 상세 내용을 적어주세요.]
+                        입력된 RGB 이미지에서 딸기 영역(Segmentation)을 먼저 검출합니다. 이후 각 딸기 영역의 픽셀을 RGB에서 HSV 색 공간으로 변환하고, H(색상) 값을 분석하여 빨간색 픽셀의 비율을 계산합니다. 이 비율을 기준으로 딸기의 숙성도를 3단계(설익음, 익음, 과숙)로 분류합니다.
+                    </p>
+                    <div class="project-demo" style="border: 1px solid #333; margin-top: 20px;">
+                        <img src="image_5815a1.png" alt="Strawberry Segmentation Result">
+                    </div>
+                    <p style="text-align: center; font-style: italic; color: #B0B0B0; margin-top: 10px; font-size: 0.9em;">
+                        <b>[Detection]</b> 딸기 영역 검출(Segmentation) 및 숙성도 분류 결과
+                    </p>
+                    <div class="project-demo" style="border: 1px solid #333; margin-top: 20px; background: #000; padding: 20px;">
+                         <img src="image_581589.png" alt="HSV Classification Logic" style="width: 100%; object-fit: contain; max-height: 200px;">
+                    </div>
+                     <p style="text-align: center; font-style: italic; color: #B0B0B0; margin-top: 10px; font-size: 0.9em;">
+                        <b>[Logic]</b> RGB-HSV 변환 기반의 숙성도 분류 알고리즘
                     </p>
 
-                    <h3>2. Robotic Arm Control (Control Stack)</h3>
+
+                    <h3 style="margin-top: 40px;">2. Robotic Arm Control (Control Stack)</h3>
                     <p>
-                        탐지된 딸기의 3D 좌표를 기반으로 로봇팔 제어 알고리즘을 구현했습니다. NVIDIA Jetson Nano에서 ROS를 통해 Indy7 (TCP/IP) 및 OpenMANIPULATOR-X (UART TTL) 로봇팔과의 통신 및 실시간 제어 로직을 수행합니다.
+                        분류 결과 '익음'으로 판단된 딸기들에 대해, Depth 데이터를 활용하여 각 딸기까지의 3D 거리와 수확을 위한 접근 각도를 계산합니다. 이 좌표 데이터는 NVIDIA Jetson Nano에서 ROS 토픽으로 발행(publish)됩니다.
+                    </p>
+                    <p>
+                        제어 노드(Node)는 이 좌표를 구독(subscribe)하여 Indy7 (TCP/IP) 및 OpenMANIPULATOR-X (UART TTL) 로봇팔을 구동시킬 Gripper/Joint 제어 명령(CMD)을 생성하고 전송합니다.
+                    </p>
+                    <div class="project-demo" style="border: 1px solid #333; margin-top: 20px;">
+                        <img src="image_581263.png" alt="Depth and Angle Estimation">
+                    </div>
+                    <p style="text-align: center; font-style: italic; color: #B0B0B0; margin-top: 10px; font-size: 0.9em;">
+                        <b>[Control]</b> Depth 카메라를 이용한 수확 지점 거리 및 각도 추정
                     </p>
                 </section>
 
@@ -72,6 +129,7 @@
                         <span>Indy7</span>
                         <span>OpenMANIPULATOR-X</span>
                         <span>Python</span>
+                        <span>OpenCV</span>
                     </div>
                 </section>
                 
