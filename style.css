@@ -608,3 +608,68 @@ h1, h2, h3 {
         grid-template-columns: 1fr; /* 모두 1열로 변경 */
     }
 }
+
+/* --- 12. 2-Column Image Grid (in projects) --- */
+.image-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2개의 열을 1:1 비율로 */
+    gap: 20px; /* 이미지 사이 간격 */
+    align-items: stretch; /* (수정) 아이템 높이를 같게 늘림 */
+    margin-top: 20px;
+}
+
+.image-grid-2col .grid-item {
+    /* 각 아이템(이미지+캡션) */
+    display: flex; /* Flexbox 사용하여 */
+    flex-direction: column; /* 내용을 세로로 쌓음 */
+}
+
+.image-grid-2col .grid-item .project-demo {
+    border: 1px solid #333;
+    background: #000;
+    margin-bottom: 10px; /* 이미지와 캡션 사이 간격 */
+    flex-grow: 1; /* 남는 공간 차지 (이미지 영역) */
+    display: flex; /* 내부 이미지 정렬용 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    overflow: hidden; /* 이미지가 넘치지 않도록 */
+    border-radius: 5px; /* (추가) 약간 둥글게 */
+}
+
+.image-grid-2col .grid-item .project-demo.no-bg {
+    background: none;
+    border: 1px solid #333;
+}
+
+/* (수정) 모든 이미지에 최대 높이 및 contain 적용 */
+.image-grid-2col .grid-item .project-demo img {
+    width: 100%;
+    height: auto;
+    max-height: 250px; /* (수정) 최대 높이 설정 (예: 250px, 필요시 조절) */
+    object-fit: contain; /* 비율 유지하며 포함 */
+    display: block;
+}
+
+/* (삭제) 로직 이미지 높이 제한 제거 - 불필요 */
+/* .image-grid-2col .grid-item .project-demo img[alt="HSV Classification Logic"] { ... } */
+
+
+.image-grid-2col .grid-item p { /* 캡션 스타일 */
+    text-align: center;
+    font-style: italic;
+    color: #B0B0B0;
+    margin-top: auto; /* 이미지 영역 아래에 붙도록 */
+    font-size: 0.9em;
+    padding-top: 5px;
+}
+
+
+/* (모바일 반응형) 화면이 768px보다 작아지면 1열로 변경 */
+@media (max-width: 768px) {
+    .image-grid-2col {
+        grid-template-columns: 1fr; /* 1열로 변경 */
+    }
+     .image-grid-2col .grid-item .project-demo img {
+        max-height: none; /* 모바일에선 높이 제한 해제 */
+    }
+}
