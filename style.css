@@ -466,3 +466,17 @@ h1, h2, h3 {
     color: #00BFFF;
     margin-top: 20px;
 }
+/* --- 10. 프로젝트 상세 페이지 (경고 문구) --- */
+.status-warning {
+    background-color: #2a2d34;
+    border-left: 5px solid #00BFFF;
+    padding: 15px 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-size: 1.05em !important;
+    line-height: 1.7 !important;
+}
+.status-warning b {
+    color: #00BFFF;
+    font-weight: 700;
+}
