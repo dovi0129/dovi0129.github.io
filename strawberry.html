@@ -24,38 +24,40 @@
     <main class="project-detail-container">
         <h1>strawberry-harvest-ai: 딸기 숙도 분류 및 수확 로봇 시스템</h1>
         
-        <div class="system-diagram">
-            
-            <div class="diagram-col">
-                <div class="diagram-node">Intel RealSense D455</div>
+        <div class="arch-diagram">
+            <div class="arch-tier top">
+                Jetson Orin Nano
+                <span>중앙 제어 시스템</span>
             </div>
-            
-            <div class="diagram-arrow">
-                <span>RGB / Depth Frame</span>
-                &rarr;
-            </div>
-
-            <div class="diagram-col middle">
-                <div class="diagram-node">Strawberry Detection (Vision)</div>
-                <div class="diagram-arrow vertical">
-                    <span>Target Coordinate Data</span>
-                    &darr;
+            <div class="arch-tier bottom">
+                <div class="arch-module vision">
+                    <h3>탐지 파트</h3>
+                    <ul>
+                        <li>딸기 위치 탐지</li>
+                        <li>숙성도 분석</li>
+                        <li>수확 우선순위 설정</li>
+                    </ul>
                 </div>
-                <div class="diagram-node">NVIDIA Jetson (Control)</div>
-            </div>
-            
-            <div class="diagram-arrow">
-                <span>Gripper / Joint CMD</span>
-                &rarr;
-            </div>
-
-            <div class="diagram-col">
-                <div class="diagram-node">OpenMANIPULATOR-X</div>
-                <div class="diagram-node">Indy7</div>
+                <div class="arch-module control">
+                    <h3>제어 파트</h3>
+                    <ul>
+                        <li>좌표 변환</li>
+                        <li>로봇 제어</li>
+                        <li>그리퍼 제어</li>
+                    </ul>
+                </div>
+                <div class="arch-module app">
+                    <h3>앱 파트</h3>
+                    <ul>
+                        <li>실시간 스트리밍</li>
+                        <li>수확 로그</li>
+                        <li>실시간 수확 현황</li>
+                    </ul>
+                </div>
             </div>
         </div>
         <p style="text-align: center; font-style: italic; color: #B0B0B0; margin-top: 10px; font-size: 0.9em;">
-            <b>System Architecture:</b> RealSense로 프레임을 입력받아 Jetson에서 처리 후 로봇팔로 제어 명령 전달
+            <b>System Architecture:</b> 중앙 제어 시스템(Jetson)을 기반으로 탐지, 제어, 앱 파트가 연동됩니다.
         </p>
 
 
@@ -79,6 +81,46 @@
                     <p>
                         Intel RealSense 카메라로 딸기를 탐지하고 숙도를 3단계(설익음, 익음, 과숙)로 분류한 뒤, ROS(Robot Operating System)를 기반으로 로봇팔(Indy7, OpenMANIPULATOR-X)이 자동으로 익은 딸기만 수확하도록 '탐지-판단-제어' 파이프라인을 통합 구현했습니다.
                     </p>
+                    
+                    <div class="motivation-diagram">
+                        <div class="motivation-box">
+                            <h3>농가 인구 감소 및 고령화</h3>
+                            <div class="motivation-sub-grid">
+                                <div class="motivation-item">
+                                    <span>농가 인구 감소</span>
+                                    <p>지속적 감소 추세</p>
+                                </div>
+                                <div class="motivation-item">
+                                    <span>농업인 고령화</span>
+                                    <p>평균 연령 증가</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="motivation-box">
+                            <h3>딸기 수확 작업 문제점</h3>
+                            <div class="motivation-sub-grid">
+                                <div class="motivation-item">
+                                    <span>숙성도 판단 오류</span>
+                                    <p>미숙/과숙 딸기 수확</p>
+                                </div>
+                                <div class="motivation-item">
+                                    <span>수확 중 손상</span>
+                                    <p>과실 품질 저하</p>
+                                </div>
+                                <div class="motivation-item">
+                                    <span>인력 집약적</span>
+                                    <p>높은 노동 비용</p>
+                                </div>
+                                <div class="motivation-item">
+                                    <span>작업 효율 저하</span>
+                                    <p>느린 수확 속도</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <p style="text-align: center; font-style: italic; color: #B0B0B0; margin-top: 10px; font-size: 0.9em;">
+                        <b>Project Motivation:</b> 농가 인구 감소 문제와 기존 수작업의 비효율을 해결하고자 했습니다.
+                    </p>
                 </section>
 
                 <section id="features">
@@ -88,18 +130,21 @@
                     <p>
                         입력된 RGB 이미지에서 딸기 영역(Segmentation)을 먼저 검출합니다. 이후 각 딸기 영역의 픽셀을 RGB에서 HSV 색 공간으로 변환하고, H(색상) 값을 분석하여 빨간색 픽셀의 비율을 계산합니다. 이 비율을 기준으로 딸기의 숙성도를 3단계(설익음, 익음, 과숙)로 분류합니다.
                     </p>
-                    <div class="project-demo" style="border: 1px solid #333; margin-top: 20px;">
-                        <img src="image_5815a1.png" alt="Strawberry Segmentation Result">
+                    
+                    <div class="image-grid-2col">
+                        <div class="grid-item">
+                            <div class="project-demo no-bg">
+                                <img src="strawberry_segmentation.png" alt="Strawberry Segmentation Result">
+                            </div>
+                            <p><b>[Detection]</b> 딸기 영역 검출(Segmentation) 결과</p>
+                        </div>
+                        <div class="grid-item">
+                            <div class="project-demo" style="padding: 20px; box-sizing: border-box; height: 100%;">
+                                <img src="strawberry_hsv_logic.png" alt="HSV Classification Logic" style="width: 100%; object-fit: contain; max-height: 200px;">
+                            </div>
+                            <p><b>[Logic]</b> RGB-HSV 변환 기반의 숙성도 분류 알고리즘</p>
+                        </div>
                     </div>
-                    <p style="text-align: center; font-style: italic; color: #B0B0B0; margin-top: 10px; font-size: 0.9em;">
-                        <b>[Detection]</b> 딸기 영역 검출(Segmentation) 및 숙성도 분류 결과
-                    </p>
-                    <div class="project-demo" style="border: 1px solid #333; margin-top: 20px; background: #000; padding: 20px;">
-                         <img src="image_581589.png" alt="HSV Classification Logic" style="width: 100%; object-fit: contain; max-height: 200px;">
-                    </div>
-                     <p style="text-align: center; font-style: italic; color: #B0B0B0; margin-top: 10px; font-size: 0.9em;">
-                        <b>[Logic]</b> RGB-HSV 변환 기반의 숙성도 분류 알고리즘
-                    </p>
 
 
                     <h3 style="margin-top: 40px;">2. Robotic Arm Control (Control Stack)</h3>
@@ -109,8 +154,24 @@
                     <p>
                         제어 노드(Node)는 이 좌표를 구독(subscribe)하여 Indy7 (TCP/IP) 및 OpenMANIPULATOR-X (UART TTL) 로봇팔을 구동시킬 Gripper/Joint 제어 명령(CMD)을 생성하고 전송합니다.
                     </p>
+                    
+                    <div class="image-grid-2col">
+                        <div class="grid-item">
+                            <div class="project-demo" style="background: #fff; border: 1px solid #333;">
+                                <img src="strawberry_hardware_components.png" alt="Robot Components">
+                            </div>
+                            <p><b>[Hardware]</b> 사용된 로봇팔 (Neuromeka Indy7, OpenMANIPULATOR-X)</p>
+                        </div>
+                        <div class="grid-item">
+                            <div class="project-demo no-bg">
+                                <img src="strawberry_hardware_setup.png" alt="Actual Robot Setup">
+                            </div>
+                            <p><b>[Action]</b> 탐지된 딸기 좌표로 로봇팔이 이동한 실제 동작 모습</p>
+                        </div>
+                    </div>
+                    
                     <div class="project-demo" style="border: 1px solid #333; margin-top: 20px;">
-                        <img src="image_581263.png" alt="Depth and Angle Estimation">
+                        <img src="strawberry_depth_angle.png" alt="Depth and Angle Estimation">
                     </div>
                     <p style="text-align: center; font-style: italic; color: #B0B0B0; margin-top: 10px; font-size: 0.9em;">
                         <b>[Control]</b> Depth 카메라를 이용한 수확 지점 거리 및 각도 추정
