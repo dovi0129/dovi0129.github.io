@@ -2,11 +2,68 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Dovi의 포트폴리오</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minu Baek (Dovi) - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>안녕하세요!</h1>
-    <p>제 포트폴리오 사이트에 오신 것을 환영합니다.</p>
-    <p>현재 준비 중입니다.</p>
+    <header class="navbar">
+        <div class="navbar-logo">
+            <a href="/">dovi.dev</a>
+        </div>
+        <nav class="navbar-menu">
+            <a href="/">Projects</a>
+            <a href="#">About</a> 
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <main class="project-gallery">
+        <h1>Projects</h1>
+        
+        <div class="project-grid">
+            
+            <div class="project-card">
+                <h3>PaperRL: 제지 공정 자율 제어</h3>
+                <p>3단계 RL 파이프라인(에너지·품질·생산 균형) 및 하이브리드 디지털 트윈</p>
+                <div class="project-tags">
+                    <span>Deep RL</span>
+                    <span>Industrial AI</span>
+                    <span>PyTorch</span>
+                    <span>Gymnasium</span>
+                </div>
+                <a href="#" class="card-link">자세히 보기 &rarr;</a>
+            </div>
+
+            <div class="project-card">
+                <h3>strawberryDection: 딸기 숙도 분류</h3>
+                <p>딸기 숙도 분류 및 수확 보조 로봇 연동 (캡스톤 디자인)</p>
+                <div class="project-tags">
+                    <span>Computer Vision</span>
+                    <span>Robotics</span>
+                    <span>ROS</span>
+                    <span>Jetson</span>
+                </div>
+                <a href="#" class="card-link">자세히 보기 &rarr;</a>
+            </div>
+
+            <div class="project-card">
+                <h3>로봇팔 제어 스택</h3>
+                <p>Indy7, OpenMANIPULATOR-X 통신/제어 (Jetson, RealSense D455)</p>
+                <div class="project-tags">
+                    <span>Robotics</span>
+                    <span>ROS</span>
+                    <span>Jetson</span>
+                    <span>RealSense</span>
+                </div>
+                <a href="#" class="card-link">자세히 보기 &rarr;</a>
+            </div>
+            
+             </div>
+    </main>
+
 </body>
 </html>
