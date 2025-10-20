@@ -1,0 +1,120 @@
+/* --- 1. 기본 스타일 (글로벌) --- */
+body {
+    background-color: #121418; /* 다크 모드 배경색 */
+    color: #E0E0E0; /* 기본 글자색 (밝은 회색) */
+    font-family: 'Noto Sans KR', sans-serif; /* 기본 폰트 */
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #00BFFF; /* 링크 색상 (Deep Sky Blue) */
+    text-decoration: none;
+}
+
+h1, h2, h3 {
+    font-family: 'Orbitron', sans-serif; /* 제목 폰트 (시안 느낌) */
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+/* --- 2. 내비게이션 바 (헤더) --- */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* 로고와 메뉴를 양 끝으로 */
+    align-items: center;
+    padding: 20px 50px;
+    border-bottom: 1px solid #333; /* 구분선 */
+}
+
+.navbar-logo a {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5em;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.navbar-menu a {
+    color: #E0E0E0;
+    margin-left: 20px;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+.navbar-menu a:hover {
+    color: #00BFFF; /* 호버 시 색상 변경 */
+}
+
+/* --- 3. 프로젝트 갤러리 (메인) --- */
+.project-gallery {
+    max-width: 1200px;
+    margin: 40px auto; /* 중앙 정렬 */
+    padding: 0 20px;
+}
+
+.project-gallery h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+/* --- 4. 프로젝트 그리드 및 카드 --- */
+.project-grid {
+    display: grid;
+    /* 3열 그리드, 최소 300px, 최대 1fr(균등) */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 25px; /* 카드 사이 간격 */
+}
+
+.project-card {
+    background-color: #1A1C20; /* 카드 배경색 */
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 25px;
+    
+    /* [동적 요소] 부드러운 전환 효과 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    /* [동적 요소] 마우스 올리면 살짝 커짐 */
+    transform: scale(1.03); 
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.3); /* 은은한 네온 효과 */
+    border-color: #00BFFF;
+}
+
+.project-card h3 {
+    margin-top: 0;
+    font-size: 1.4em;
+    color: #FFFFFF;
+}
+
+.project-card p {
+    font-size: 0.95em;
+    line-height: 1.6;
+    color: #B0B0B0; /* 본문 텍스트 (조금 더 어둡게) */
+}
+
+/* 기술 스택 태그 */
+.project-tags {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap; /* 태그 많으면 줄바꿈 */
+    gap: 8px;
+}
+
+.project-tags span {
+    background-color: #2a2d34;
+    color: #00BFFF;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: 700;
+}
+
+/* '자세히 보기' 링크 */
+.card-link {
+    display: inline-block;
+    margin-top: 20px;
+    font-weight: 700;
+}
