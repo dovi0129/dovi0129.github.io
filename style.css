@@ -480,6 +480,143 @@ h1, h2, h3 {
     color: #00BFFF;
     font-weight: 700;
 }
+
+/* --- 11. System Diagram (Strawberry) --- */
+.system-diagram {
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: space-between; /* 가로로 균등 배분 */
+    background-color: #1A1C20; /* 어두운 박스 배경 */
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 30px 20px;
+    margin-top: 30px;
+    flex-wrap: wrap; /* 화면 작아지면 줄바꿈 */
+}
+
+/* 다이어그램의 각 '열' (Input, Process, Output) */
+.diagram-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* 노드 사이의 간격 */
+    flex-basis: 180px; /* 기본 너비 */
+}
+
+/* 다이어그램의 '중앙' 열 */
+.diagram-col.middle {
+    flex-basis: 220px; /* 가운데는 조금 더 넓게 */
+}
+
+/* 다이어그램의 '노드' (네모 박스) */
+.diagram-node {
+    background-color: #2a2d34;
+    border: 1px solid #555;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    width: 100%; /* 부모(col) 너비에 맞춤 */
+    color: #E0E0E0;
+    font-weight: 700;
+    box-sizing: border-box; /* 패딩이 너비를 밀어내지 않도록 */
+}
+
+/* 다이어그램 '화살표' */
+.diagram-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #00BFFF; /* 화살표 색상 */
+    font-size: 2.5em; /* 화살표 크기 */
+    font-weight: bold;
+    flex-grow: 1; /* 남는 공간 차지 */
+    text-align: center;
+    padding: 0 10px;
+}
+
+/* 화살표 위의 '설명 텍스트' */
+.diagram-arrow span {
+    font-size: 0.4em; /* 텍스트 크기 (em 기준이라 작아짐) */
+    color: #B0B0B0;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+/* '수직' 화살표 */
+.diagram-arrow.vertical {
+    font-size: 2em;
+    margin: 10px 0;
+}
+.diagram-arrow.vertical span {
+     margin-bottom: 5px;
+}
+
+/* --- 12. 2-Column Image Grid (in projects) --- */
+.image-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2개의 열을 1:1 비율로 */
+    gap: 20px; /* 이미지 사이 간격 */
+    align-items: stretch; /* (수정) 아이템 높이를 같게 늘림 */
+    margin-top: 20px;
+}
+
+.image-grid-2col .grid-item {
+    /* 각 아이템(이미지+캡션) */
+    display: flex; /* Flexbox 사용하여 */
+    flex-direction: column; /* 내용을 세로로 쌓음 */
+}
+
+.image-grid-2col .grid-item .project-demo {
+    border: 1px solid #333;
+    background: #000;
+    margin-bottom: 10px; /* 이미지와 캡션 사이 간격 */
+    flex-grow: 1; /* 남는 공간 차지 (이미지 영역) */
+    display: flex; /* 내부 이미지 정렬용 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    overflow: hidden; /* 이미지가 넘치지 않도록 */
+    border-radius: 5px; /* (추가) 약간 둥글게 */
+}
+
+.image-grid-2col .grid-item .project-demo.no-bg {
+    background: none;
+    border: 1px solid #333;
+}
+
+/* (수정) 모든 이미지에 최대 높이 및 contain 적용 */
+.image-grid-2col .grid-item .project-demo img {
+    width: 100%;
+    height: auto;
+    max-height: 250px; /* (수정) 최대 높이 설정 (예: 250px, 필요시 조절) */
+    object-fit: contain; /* 비율 유지하며 포함 */
+    display: block;
+}
+
+/* (삭제) 로직 이미지 높이 제한 제거 - 불필요 */
+/* .image-grid-2col .grid-item .project-demo img[alt="HSV Classification Logic"] { ... } */
+
+
+.image-grid-2col .grid-item p { /* 캡션 스타일 */
+    text-align: center;
+    font-style: italic;
+    color: #B0B0B0;
+    margin-top: auto; /* 이미지 영역 아래에 붙도록 */
+    font-size: 0.9em;
+    padding-top: 5px;
+}
+
+
+/* (모바일 반응형) 화면이 768px보다 작아지면 1열로 변경 */
+@media (max-width: 768px) {
+    .image-grid-2col {
+        grid-template-columns: 1fr; /* 1열로 변경 */
+    }
+     .image-grid-2col .grid-item .project-demo img {
+        max-height: none; /* 모바일에선 높이 제한 해제 */
+    }
+}
+
 /* --- 13. System Architecture Diagram (HTML) --- */
 .arch-diagram {
     background: #f9f9f9; /* 밝은 배경 */
@@ -606,70 +743,5 @@ h1, h2, h3 {
 @media (max-width: 768px) {
     .arch-tier.bottom, .motivation-diagram, .motivation-sub-grid {
         grid-template-columns: 1fr; /* 모두 1열로 변경 */
-    }
-}
-
-/* --- 12. 2-Column Image Grid (in projects) --- */
-.image-grid-2col {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 2개의 열을 1:1 비율로 */
-    gap: 20px; /* 이미지 사이 간격 */
-    align-items: stretch; /* (수정) 아이템 높이를 같게 늘림 */
-    margin-top: 20px;
-}
-
-.image-grid-2col .grid-item {
-    /* 각 아이템(이미지+캡션) */
-    display: flex; /* Flexbox 사용하여 */
-    flex-direction: column; /* 내용을 세로로 쌓음 */
-}
-
-.image-grid-2col .grid-item .project-demo {
-    border: 1px solid #333;
-    background: #000;
-    margin-bottom: 10px; /* 이미지와 캡션 사이 간격 */
-    flex-grow: 1; /* 남는 공간 차지 (이미지 영역) */
-    display: flex; /* 내부 이미지 정렬용 */
-    align-items: center; /* 세로 중앙 정렬 */
-    justify-content: center; /* 가로 중앙 정렬 */
-    overflow: hidden; /* 이미지가 넘치지 않도록 */
-    border-radius: 5px; /* (추가) 약간 둥글게 */
-}
-
-.image-grid-2col .grid-item .project-demo.no-bg {
-    background: none;
-    border: 1px solid #333;
-}
-
-/* (수정) 모든 이미지에 최대 높이 및 contain 적용 */
-.image-grid-2col .grid-item .project-demo img {
-    width: 100%;
-    height: auto;
-    max-height: 250px; /* (수정) 최대 높이 설정 (예: 250px, 필요시 조절) */
-    object-fit: contain; /* 비율 유지하며 포함 */
-    display: block;
-}
-
-/* (삭제) 로직 이미지 높이 제한 제거 - 불필요 */
-/* .image-grid-2col .grid-item .project-demo img[alt="HSV Classification Logic"] { ... } */
-
-
-.image-grid-2col .grid-item p { /* 캡션 스타일 */
-    text-align: center;
-    font-style: italic;
-    color: #B0B0B0;
-    margin-top: auto; /* 이미지 영역 아래에 붙도록 */
-    font-size: 0.9em;
-    padding-top: 5px;
-}
-
-
-/* (모바일 반응형) 화면이 768px보다 작아지면 1열로 변경 */
-@media (max-width: 768px) {
-    .image-grid-2col {
-        grid-template-columns: 1fr; /* 1열로 변경 */
-    }
-     .image-grid-2col .grid-item .project-demo img {
-        max-height: none; /* 모바일에선 높이 제한 해제 */
     }
 }
