@@ -3,56 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minu Baek (Dovi) - Portfolio</title>
+    <title>Minu Baek — RL &amp; Industrial AI Researcher</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-<header class="navbar">
-        <div class="navbar-logo">
-            <a href="index.html">dovi.dev</a>
+    <div class="bg-orbs"><div class="orb"></div><div class="orb"></div><div class="orb"></div></div>
+
+    <!-- Nav -->
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">MB</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#research">Research</a>
+                <a href="#publications">Publications</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
         </div>
-        <nav class="navbar-menu">
-            <a href="index.html" class="active">Projects</a> 
-            <a href="about.html">About</a> 
-            <a href="contact.html">Contact</a>
-        </nav>
-</header>
+    </nav>
 
-    <main class="project-gallery">
-        <h1>Projects</h1>
-        
-        <div class="project-grid">
-            
-            <div class="project-card">
-                <h3>PaperRL: 제지 공정 자율 제어</h3>
-                <p>3단계 RL 파이프라인(BC+PPO)을 통해 생산성 8.28% 향상 및 에너지(압력) 39.78% 절감 달성 [AAAI 2026 Track]</p>
-                <div class="project-tags">
-                    <span>Deep RL</span>
-                    <span>Industrial AI</span>
-                    <span>PyTorch</span>
-                    <span>Gymnasium</span>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-tag"><span class="dot"></span>M.S. Student · Hanbat National University</div>
+            <h1>Minu Baek</h1>
+            <p class="hero-sub">Reinforcement Learning · Industrial AI · Robotics</p>
+            <p class="hero-affil">
+                소프트웨어융합대학원 컴퓨터공학과 석사과정<br>
+                <a href="https://sites.google.com/view/ecoai/introduction?authuser=0" target="_blank">Eco AI Lab</a>
+            </p>
+            <div class="hero-actions">
+                <a href="mailto:bmw5779@gmail.com" class="btn btn-primary">Contact Me</a>
+                <a href="https://github.com/dovi0129" target="_blank" class="btn btn-ghost">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
+        <div class="container">
+            <p class="label">// About</p>
+            <h2>About Me</h2>
+            <div class="about-text">
+                <p>강화학습과 디지털 트윈 기반의 산업 공정 자율화를 연구하고 있습니다. 복잡한 제조 환경에서 안전하고 효율적인 AI 제어 시스템을 설계하는 데 관심을 두고 있으며, 실제 산업 데이터를 활용한 실용적인 연구를 지향합니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research -->
+    <section id="research" class="section">
+        <div class="container">
+            <p class="label">// Research Focus</p>
+            <h2>Research</h2>
+            <div class="research-grid">
+                <div class="card reveal">
+                    <h3>Safe & Offline RL</h3>
+                    <p>산업 공정 제어를 위한 안전 강화학습 및 오프라인 RL</p>
                 </div>
-                <a href="paper-rl.html" class="card-link">자세히 보기 &rarr;</a>
-            </div>
-
-            <div class="project-card">
-                <h3>strawberry-harvest-ai: 딸기 수확 AI 시스템</h3>
-                <p>컴퓨터 비전(숙도 분류)과 로봇팔 제어(Indy7, OpenMANIPULATOR-X)를 통합한 캡스톤 디자인 프로젝트</p>
-                <div class="project-tags">
-                    <span>Computer Vision</span>
-                    <span>Robotics</span>
-                    <span>ROS</span>
-                    <span>Jetson</span>
-                    <span>RealSense</span>
+                <div class="card reveal">
+                    <h3>Digital Twin</h3>
+                    <p>제조 시스템 최적화를 위한 하이브리드 디지털 트윈 모델링</p>
                 </div>
-                <a href="strawberry.html" class="card-link">자세히 보기 &rarr;</a>
+                <div class="card reveal">
+                    <h3>LLM & RAG</h3>
+                    <p>실시간 공정 모니터링을 위한 LLM/RAG 기반 운영 지원 시스템</p>
+                </div>
             </div>
+        </div>
+    </section>
 
+    <!-- Publications -->
+    <section id="publications" class="section">
+        <div class="container">
+            <p class="label">// Publications</p>
+            <h2>Selected Publications</h2>
+            <div class="pub-list">
+                <div class="pub-item reveal">
+                    <div class="pub-meta">
+                        <span class="pub-badge journal">Journal</span>
+                        <span class="pub-year">2025</span>
+                    </div>
+                    <div class="pub-body">
+                        <h3>A Three-Stage Reinforcement Learning Pipeline for Autonomous Process Control in the Papermaking Industry</h3>
+                        <p class="pub-venue">IEEE Transactions on Industrial Informatics (TII) — Accepted</p>
+                    </div>
+                </div>
+                <div class="pub-item reveal">
+                    <div class="pub-meta">
+                        <span class="pub-badge conf">Conference</span>
+                        <span class="pub-year">2025</span>
+                    </div>
+                    <div class="pub-body">
+                        <h3>Multi-Stage Reinforcement Learning for Robust Charging of Quantum Batteries</h3>
+                        <p class="pub-venue">AAAI 2025 Student Abstract — Accepted</p>
+                    </div>
+                </div>
+                <div class="pub-item reveal">
+                    <div class="pub-meta">
+                        <span class="pub-badge poster">Poster</span>
+                        <span class="pub-year">2026</span>
+                    </div>
+                    <div class="pub-body">
+                        <h3>제지공정 강화학습 안전제어를 위한 데이터 기반 운전 영역 정량화 및 품질 영향 분석</h3>
+                        <p class="pub-venue">2026 동계 한국통신학회 학술대회</p>
+                    </div>
+                </div>
+                <div class="pub-item reveal">
+                    <div class="pub-meta">
+                        <span class="pub-badge poster">Poster</span>
+                        <span class="pub-year">2025</span>
+                    </div>
+                    <div class="pub-body">
+                        <h3>강화학습 기반 제지 공정 자율 운전: 초기 안정화 가속화 전략</h3>
+                        <p class="pub-venue">2025 한국통신학회 추계종합학술발표회</p>
+                    </div>
+                </div>
+                <div class="pub-item reveal">
+                    <div class="pub-meta">
+                        <span class="pub-badge poster">Poster</span>
+                        <span class="pub-year">2025</span>
+                    </div>
+                    <div class="pub-body">
+                        <h3>실시간 제지공정 운영 효율화를 위한 LLM과 RAG 기반 대화형 AI 어시스턴트 설계</h3>
+                        <p class="pub-venue">2025 한국통신학회 추계종합학술발표회</p>
+                    </div>
+                </div>
             </div>
-    </main>
+        </div>
+    </section>
 
+    <!-- Projects -->
+    <section id="projects" class="section">
+        <div class="container">
+            <p class="label">// Projects</p>
+            <h2>Projects</h2>
+            <div class="project-list">
+                <div class="project-row reveal">
+                    <div class="project-info">
+                        <h3>PaperRL</h3>
+                        <p>디지털 트윈 + 3단계 강화학습 파이프라인 기반 제지 공정 자율 제어</p>
+                    </div>
+                    <div class="project-tags">
+                        <span>RL</span><span>Digital Twin</span><span>PyTorch</span>
+                    </div>
+                </div>
+                <div class="project-row reveal">
+                    <div class="project-info">
+                        <h3>Industrial Monitoring Assistant</h3>
+                        <p>React + FastAPI 기반 실시간 공정 모니터링 및 RAG Q&A 시스템</p>
+                    </div>
+                    <div class="project-tags">
+                        <span>LLM</span><span>RAG</span><span>React</span><span>FastAPI</span>
+                    </div>
+                </div>
+                <div class="project-row reveal">
+                    <div class="project-info">
+                        <h3>Strawberry Harvest AI</h3>
+                        <p>비전 기반 딸기 숙성도 분류 및 로봇 수확 자동화 파이프라인</p>
+                    </div>
+                    <div class="project-tags">
+                        <span>CV</span><span>Robotics</span><span>ROS</span><span>Jetson</span>
+                    </div>
+                </div>
+                <div class="project-row reveal">
+                    <div class="project-info">
+                        <h3>Indy7 + OpenMANIPULATOR-X</h3>
+                        <p>Jetson Orin Nano + RealSense 기반 로봇 제어 스택</p>
+                    </div>
+                    <div class="project-tags">
+                        <span>ROS</span><span>Jetson</span><span>RealSense</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stack -->
+    <section id="stack" class="section">
+        <div class="container">
+            <p class="label">// Tech Stack</p>
+            <h2>Core Stack</h2>
+            <div class="stack-wrap reveal">
+                <span>Python</span><span>PyTorch</span><span>Gymnasium</span>
+                <span>Stable-Baselines3</span><span>NumPy</span><span>Pandas</span>
+                <span>Plotly</span><span>ROS</span><span>CUDA</span>
+                <span>Jetson</span><span>Intel RealSense</span><span>Git</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards -->
+    <section id="awards" class="section">
+        <div class="container">
+            <p class="label">// Awards & Activities</p>
+            <h2>Milestones</h2>
+            <div class="timeline">
+                <div class="tl-item reveal">
+                    <span class="tl-date">2026.02</span>
+                    <div><strong>ADsP (데이터분석 준전문가)</strong> 합격</div>
+                </div>
+                <div class="tl-item reveal">
+                    <span class="tl-date">2026.01</span>
+                    <div><strong>AAAI 2025</strong> 학회 참가 (Philadelphia, USA)</div>
+                </div>
+                <div class="tl-item reveal">
+                    <span class="tl-date">2025.11</span>
+                    <div><strong>캡스톤디자인 경진대회 우수상</strong> — 한국통신학회 추계종합학술발표회</div>
+                </div>
+                <div class="tl-item reveal">
+                    <span class="tl-date">2025.10</span>
+                    <div><strong>대전 창의적 종합설계 경진대회 장려상</strong> — 딸기 수확 자동화 로봇</div>
+                </div>
+                <div class="tl-item reveal">
+                    <span class="tl-date">2025.07~</span>
+                    <div><strong>산학협력 프로젝트</strong> — 자율주행 주차로봇 SW 최적화</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section section-center">
+        <div class="container">
+            <p class="label">// Contact</p>
+            <h2>Let's Connect</h2>
+            <p class="contact-sub">연구 협업이나 문의 사항이 있으시면 연락주세요.</p>
+            <div class="contact-actions">
+                <a href="mailto:bmw5779@gmail.com" class="btn btn-primary">bmw5779@gmail.com</a>
+                <a href="https://github.com/dovi0129" target="_blank" class="btn btn-ghost">GitHub</a>
+                <a href="https://sites.google.com/view/ecoai/introduction?authuser=0" target="_blank" class="btn btn-ghost">Eco AI Lab</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">&copy; 2025 Minu Baek</div>
+    </footer>
+
+    <script>
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    </script>
 </body>
 </html>

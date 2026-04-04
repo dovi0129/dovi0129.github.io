@@ -1,747 +1,300 @@
-/* --- 1. 기본 스타일 (글로벌) --- */
+/* ══════════════════════════════════════════
+   dovi.dev — Clean Minimal Portfolio
+   ══════════════════════════════════════════ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --glass: rgba(255,255,255,0.035);
+  --glass-hover: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.07);
+  --glass-border-hover: rgba(255,255,255,0.13);
+  --text: #e4e4e7;
+  --text-muted: #71717a;
+  --accent: #818cf8;
+  --accent-glow: rgba(129,140,248,0.12);
+  --g1: #818cf8;
+  --g2: #c084fc;
+  --g3: #f472b6;
+  --green: #4ade80;
+  --amber: #fbbf24;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
 body {
-    background-color: #121418; /* 다크 모드 배경색 */
-    color: #E0E0E0; /* 기본 글자색 (밝은 회색) */
-    font-family: 'Noto Sans KR', sans-serif; /* 기본 폰트 */
-    margin: 0;
-    padding: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
 }
 
-a {
-    color: #00BFFF; /* 링크 색상 (Deep Sky Blue) */
-    text-decoration: none;
+a { color: var(--accent); text-decoration: none; transition: color .3s; }
+a:hover { color: #a5b4fc; }
+img { max-width: 100%; display: block; }
+
+.container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Background Orbs ── */
+.bg-orbs { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.bg-orbs .orb { position: absolute; border-radius: 50%; filter: blur(130px); opacity: .3; animation: drift 22s ease-in-out infinite; }
+.bg-orbs .orb:nth-child(1) { width: 550px; height: 550px; background: var(--g1); top: -8%; left: -8%; }
+.bg-orbs .orb:nth-child(2) { width: 450px; height: 450px; background: var(--g2); top: 45%; right: -12%; animation-delay: -8s; }
+.bg-orbs .orb:nth-child(3) { width: 380px; height: 380px; background: var(--g3); bottom: -8%; left: 25%; animation-delay: -15s; }
+@keyframes drift {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(50px,-35px) scale(1.04); }
+  66% { transform: translate(-35px,25px) scale(.96); }
+}
+.bg-orbs::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+  background-size: 256px;
 }
 
-h1, h2, h3 {
-    font-family: 'Orbitron', sans-serif; /* 제목 폰트 (시안 느낌) */
-    color: #FFFFFF;
-    font-weight: 700;
-}
-
-/* --- 2. 내비게이션 바 (헤더) --- */
+/* ── Nav ── */
 .navbar {
-    display: flex;
-    justify-content: space-between; /* 로고와 메뉴를 양 끝으로 */
-    align-items: center;
-    padding: 20px 50px;
-    border-bottom: 1px solid #333; /* 구분선 */
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(10,10,15,.55);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--glass-border);
 }
-
-.navbar-logo a {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.5em;
-    color: #FFFFFF;
-    font-weight: 700;
+.nav-inner {
+  max-width: 780px; margin: 0 auto; padding: 14px 24px;
+  display: flex; justify-content: space-between; align-items: center;
 }
-
-.navbar-menu a {
-    color: #E0E0E0;
-    margin-left: 20px;
-    font-size: 1em;
-    transition: color 0.3s ease;
+.nav-logo {
+  font-weight: 800; font-size: 1.1rem;
+  background: linear-gradient(135deg, var(--g1), var(--g2));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
 }
-
-.navbar-menu a:hover {
-    color: #00BFFF; /* 호버 시 색상 변경 */
+.nav-links { display: flex; gap: 28px; }
+.nav-links a {
+  color: var(--text-muted); font-size: .85rem; font-weight: 500;
+  position: relative; transition: color .3s;
 }
-
-/* --- 3. 프로젝트 갤러리 (메인) --- */
-.project-gallery {
-    max-width: 1200px;
-    margin: 40px auto; /* 중앙 정렬 */
-    padding: 0 20px;
+.nav-links a:hover { color: var(--text); }
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -3px; left: 0;
+  width: 0; height: 2px; border-radius: 1px;
+  background: linear-gradient(90deg, var(--g1), var(--g2));
+  transition: width .3s;
 }
+.nav-links a:hover::after { width: 100%; }
 
-.project-gallery h1 {
-    text-align: center;
-    font-size: 2.5em;
-    margin-bottom: 40px;
+/* ── Hero ── */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  padding-top: 60px;
 }
-
-/* --- 4. 프로젝트 그리드 및 카드 --- */
-.project-grid {
-    display: grid;
-    /* 3열 그리드, 최소 300px, 최대 1fr(균등) */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 25px; /* 카드 사이 간격 */
+.hero .container { width: 100%; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 14px; border-radius: 999px;
+  background: var(--accent-glow); border: 1px solid rgba(129,140,248,.18);
+  font-size: .78rem; font-weight: 500; color: var(--accent);
+  margin-bottom: 20px;
 }
-
-.project-card {
-    background-color: #1A1C20; /* 카드 배경색 */
-    border: 1px solid #333;
-    border-radius: 10px;
-    padding: 25px;
-    
-    /* [동적 요소] 부드러운 전환 효과 */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
 }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
 
-.project-card:hover {
-    /* [동적 요소] 마우스 올리면 살짝 커짐 */
-    transform: scale(1.03); 
-    box-shadow: 0 0 20px rgba(0, 191, 255, 0.3); /* 은은한 네온 효과 */
-    border-color: #00BFFF;
+.hero h1 {
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
+  font-weight: 800; letter-spacing: -.03em;
+  background: linear-gradient(135deg, #fff 30%, var(--g1));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  margin-bottom: 12px;
 }
-
-.project-card h3 {
-    margin-top: 0;
-    font-size: 1.4em;
-    color: #FFFFFF;
+.hero-sub {
+  font-size: 1.1rem; color: var(--text-muted); margin-bottom: 8px;
 }
-
-.project-card p {
-    font-size: 0.95em;
-    line-height: 1.6;
-    color: #B0B0B0; /* 본문 텍스트 (조금 더 어둡게) */
+.hero-affil {
+  font-size: .9rem; color: var(--text-muted); margin-bottom: 32px; line-height: 1.8;
 }
+.hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 
-/* 기술 스택 태그 */
-.project-tags {
-    margin-top: 15px;
-    display: flex;
-    flex-wrap: wrap; /* 태그 많으면 줄바꿈 */
-    gap: 8px;
+/* ── Buttons ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 22px; border-radius: 10px;
+  font-size: .88rem; font-weight: 600;
+  text-decoration: none; transition: all .3s; cursor: pointer; border: none;
 }
+.btn-primary {
+  background: linear-gradient(135deg, var(--g1), var(--g2));
+  color: #fff; box-shadow: 0 4px 18px rgba(129,140,248,.28);
+}
+.btn-primary:hover { box-shadow: 0 4px 28px rgba(129,140,248,.45); transform: translateY(-2px); color: #fff; }
+.btn-ghost {
+  background: var(--glass); color: var(--text);
+  border: 1px solid var(--glass-border); backdrop-filter: blur(8px);
+}
+.btn-ghost:hover { background: var(--glass-hover); transform: translateY(-2px); color: #fff; }
 
+/* ── Sections ── */
+.section { padding: 80px 0; }
+.label {
+  font-family: var(--mono); font-size: .78rem; font-weight: 500;
+  color: var(--accent); text-transform: uppercase; letter-spacing: .14em;
+  margin-bottom: 10px;
+}
+.section h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2rem);
+  font-weight: 700; letter-spacing: -.02em;
+  margin-bottom: 36px;
+}
+.section-center { text-align: center; }
+
+/* ── Cards (Research) ── */
+.card {
+  background: var(--glass); border: 1px solid var(--glass-border);
+  border-radius: var(--radius); padding: 24px;
+  backdrop-filter: blur(10px); transition: all .35s;
+}
+.card:hover {
+  background: var(--glass-hover); border-color: var(--glass-border-hover);
+  transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,.22);
+}
+.card h3 { font-size: .95rem; margin-bottom: 6px; }
+.card p { font-size: .85rem; color: var(--text-muted); line-height: 1.6; }
+
+.research-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+
+/* ── About ── */
+.about-text {
+  background: var(--glass); border: 1px solid var(--glass-border);
+  border-radius: var(--radius); padding: 28px;
+}
+.about-text p { font-size: .95rem; color: var(--text-muted); line-height: 1.85; }
+
+/* ── Publications ── */
+.pub-list { display: flex; flex-direction: column; gap: 12px; }
+.pub-item {
+  display: flex; gap: 16px; align-items: flex-start;
+  background: var(--glass); border: 1px solid var(--glass-border);
+  border-radius: var(--radius); padding: 20px 24px;
+  transition: all .3s;
+}
+.pub-item:hover {
+  background: var(--glass-hover); border-color: var(--glass-border-hover);
+  transform: translateX(4px);
+}
+.pub-meta {
+  flex-shrink: 0; display: flex; flex-direction: column;
+  align-items: center; gap: 6px; min-width: 64px; padding-top: 2px;
+}
+.pub-year {
+  font-family: var(--mono); font-size: .75rem; color: var(--text-muted);
+}
+.pub-badge {
+  font-size: .65rem; font-weight: 700; padding: 2px 8px;
+  border-radius: 4px; text-transform: uppercase; letter-spacing: .05em;
+}
+.pub-badge.journal { background: rgba(74,222,128,.12); color: var(--green); }
+.pub-badge.conf { background: rgba(129,140,248,.12); color: var(--accent); }
+.pub-badge.poster { background: rgba(251,191,36,.1); color: var(--amber); }
+
+.pub-body h3 { font-size: .92rem; font-weight: 600; margin-bottom: 4px; line-height: 1.5; }
+.pub-venue { font-size: .8rem; color: var(--text-muted); }
+
+/* ── Projects ── */
+.project-list { display: flex; flex-direction: column; gap: 12px; }
+.project-row {
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--glass); border: 1px solid var(--glass-border);
+  border-radius: var(--radius); padding: 20px 24px;
+  transition: all .3s; gap: 20px;
+}
+.project-row:hover {
+  background: var(--glass-hover); border-color: var(--glass-border-hover);
+  transform: translateX(4px);
+}
+.project-info h3 { font-size: .95rem; margin-bottom: 4px; }
+.project-info p { font-size: .83rem; color: var(--text-muted); }
+.project-tags { display: flex; flex-wrap: wrap; gap: 5px; flex-shrink: 0; }
 .project-tags span {
-    background-color: #2a2d34;
-    color: #00BFFF;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.8em;
-    font-weight: 700;
-}
-
-/* '자세히 보기' 링크 */
-.card-link {
-    display: inline-block;
-    margin-top: 20px;
-    font-weight: 700;
-}
-
-/* --- 5. About 페이지 스타일 --- */
-
-/* 현재 활성화된 메뉴 스타일 */
-.navbar-menu a.active {
-    color: #00BFFF;
-    font-weight: 700;
-}
-
-.about-container {
-    max-width: 900px; /* Projects보다 조금 좁게 */
-    margin: 40px auto;
-    padding: 0 20px;
-    line-height: 1.7;
-}
-
-.about-container h1 {
-    text-align: center;
-    font-size: 2.5em;
-    margin-bottom: 20px;
-}
-
-.about-intro {
-    font-size: 1.2em;
-    text-align: center;
-    color: #E0E0E0;
-    font-style: italic;
-    margin-bottom: 10px;
-}
-
-.about-keywords {
-    text-align: center;
-    font-size: 1.1em;
-    font-weight: 700;
-    color: #00BFFF;
-    margin-bottom: 30px;
-}
-
-.resume-button {
-    display: block;
-    width: 200px;
-    margin: 30px auto 50px auto;
-    padding: 12px 20px;
-    background-color: #00BFFF;
-    color: #121418; /* 어두운 배경색 */
-    text-align: center;
-    font-weight: 700;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-.resume-button:hover {
-    background-color: #FFFFFF;
-    color: #121418;
-    transform: scale(1.05);
-}
-
-.about-container h2 {
-    font-size: 2em;
-    border-bottom: 2px solid #00BFFF;
-    padding-bottom: 10px;
-    margin-top: 40px;
-    margin-bottom: 30px;
-}
-
-/* --- 6. 타임라인 스타일 --- */
-.timeline {
-    position: relative;
-    /* 타임라인 중앙선 */
-    border-left: 3px solid #00BFFF;
-    padding-left: 30px;
-    margin-left: 15px;
-}
-
-.timeline-item {
-    margin-bottom: 30px;
-    position: relative;
-}
-
-/* 타임라인 아이템 점 */
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -40px; /* 중앙선보다 왼쪽으로 */
-    top: 5px;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: #00BFFF;
-    border: 3px solid #121418;
-}
-
-.timeline-date {
-    color: #E0E0E0;
-    font-weight: 700;
-    font-size: 0.9em;
-    margin-bottom: 5px;
-}
-
-.timeline-content h3 {
-    font-size: 1.3em;
-    margin-top: 0;
-    margin-bottom: 5px;
-    color: #FFFFFF;
-}
-
-.timeline-content p {
-    margin-top: 0;
-    color: #B0B0B0;
-}
-
-/* --- 7. 기술 스택 스타일 --- */
-.tech-stack-container {
-    padding: 10px;
-}
-
-.tech-stack-container h3 {
-    font-size: 1.3em;
-    color: #E0E0E0;
-    font-weight: 400;
-    border-bottom: 1px solid #444;
-    padding-bottom: 5px;
-}
-
-.tech-tags {
-    margin-top: 15px;
-    margin-bottom: 30px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.tech-tags span {
-    background-color: #2a2d34;
-    color: #E0E0E0; /* Projects 태그보다 연하게 */
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-size: 0.95em;
-    transition: all 0.3s ease;
-}
-
-.tech-tags span:hover {
-    background-color: #00BFFF;
-    color: #121418;
-}
-/* --- 8. Contact 페이지 스타일 --- */
-.contact-container {
-    max-width: 800px;
-    margin: 60px auto;
-    padding: 0 20px;
-    text-align: center;
-}
-
-.contact-container h1 {
-    font-size: 2.5em;
-    margin-bottom: 15px;
-}
-
-.contact-container p {
-    font-size: 1.2em;
-    color: #B0B0B0;
-    margin-bottom: 50px;
-}
-
-.contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.contact-button {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 30px;
-    background-color: #1A1C20;
-    border: 1px solid #333;
-    border-radius: 10px;
-    text-align: left;
-    transition: all 0.3s ease;
-}
-
-.contact-button:hover {
-    transform: translateY(-5px);
-    border-color: #00BFFF;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.contact-button span:first-child {
-    /* "Email", "GitHub" 텍스트 */
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.3em;
-    font-weight: 700;
-    color: #FFFFFF;
-}
-
-.contact-button span:last-child {
-    /* "bmw5779@gmail.com" 텍스트 */
-    font-size: 1.1em;
-    color: #00BFFF;
-}
-
-/* 버튼별 아이콘 색상 (선택사항이지만, 구분을 위해) */
-.contact-button.email:hover {
-    border-color: #EA4335; /* Gmail Red */
-}
-.contact-button.email span:last-child {
-    color: #EA4335;
-}
-
-.contact-button.github:hover {
-    border-color: #FFFFFF; /* GitHub White */
-}
-.contact-button.github span:last-child {
-    color: #FFFFFF;
-}
-
-.contact-button.linkedin:hover {
-    border-color: #0A66C2; /* LinkedIn Blue */
-}
-.contact-button.linkedin span:last-child {
-    color: #0A66C2;
-}
-/* --- 9. 프로젝트 상세 페이지 스타일 --- */
-.project-detail-container {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-.project-detail-container h1 {
-    text-align: center;
-    font-size: 2.8em;
-    margin-bottom: 30px;
-}
-
-/* 데모 영상/이미지 영역 */
-.project-demo {
-    width: 100%;
-    margin-bottom: 40px;
-    background-color: #000;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.project-demo img {
-    width: 100%;
-    display: block;
-}
-
-/* 2단 그리드 레이아웃 (목차 + 본문) */
-.project-detail-grid {
-    display: grid;
-    grid-template-columns: 250px 1fr; /* 250px 고정폭, 나머지는 본문 */
-    gap: 40px;
-}
-
-/* 왼쪽 고정 목차 */
-.project-detail-nav {
-    position: sticky; /* 스크롤 따라다니는 효과 */
-    top: 40px; /* 상단에서 40px 떨어진 위치에 고정 */
-    align-self: start; /* 부모 컨테이너 상단에 붙임 */
-    background-color: #1A1C20;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #333;
-}
-
-.project-detail-nav h3 {
-    margin-top: 0;
-    font-size: 1.2em;
-    color: #FFFFFF;
-    border-bottom: 1px solid #444;
-    padding-bottom: 10px;
-}
-
-.project-detail-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.project-detail-nav li a {
-    display: block;
-    padding: 10px 0;
-    color: #B0B0B0;
-    font-weight: 700;
-    transition: color 0.3s ease;
-}
-
-.project-detail-nav li a:hover {
-    color: #00BFFF;
-}
-
-.github-button {
-    display: block;
-    width: 100%;
-    margin-top: 20px;
-    padding: 12px 0;
-    background-color: #FFFFFF;
-    color: #121418;
-    text-align: center;
-    font-weight: 700;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-.github-button:hover {
-    background-color: #00BFFF;
-}
-
-/* 오른쪽 상세 본문 */
-.project-detail-content section {
-    margin-bottom: 50px;
-}
-
-.project-detail-content h2 {
-    font-size: 2em;
-    color: #00BFFF;
-    border-bottom: 2px solid #333;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
-.project-detail-content p {
-    font-size: 1.1em;
-    color: #E0E0E0;
-    line-height: 1.8;
-}
-
-/* 코드 스니펫 스타일 */
-.project-detail-content pre {
-    background-color: #0D0D0D;
-    border: 1px solid #333;
-    border-radius: 5px;
-    padding: 20px;
-    overflow-x: auto; /* 코드가 길면 가로 스크롤 */
-    font-size: 0.9em;
-}
-
-/* 프로젝트 목록으로 돌아가기 버튼 */
-.back-to-projects {
-    display: inline-block;
-    font-size: 1.1em;
-    font-weight: 700;
-    color: #00BFFF;
-    margin-top: 20px;
-}
-/* --- 10. 프로젝트 상세 페이지 (경고 문구) --- */
-.status-warning {
-    background-color: #2a2d34;
-    border-left: 5px solid #00BFFF;
-    padding: 15px 20px;
-    margin-top: 20px;
-    border-radius: 5px;
-    font-size: 1.05em !important;
-    line-height: 1.7 !important;
-}
-.status-warning b {
-    color: #00BFFF;
-    font-weight: 700;
-}
-
-/* --- 11. System Diagram (Strawberry) --- */
-.system-diagram {
-    display: flex;
-    align-items: center; /* 세로 중앙 정렬 */
-    justify-content: space-between; /* 가로로 균등 배분 */
-    background-color: #1A1C20; /* 어두운 박스 배경 */
-    border: 1px solid #333;
-    border-radius: 10px;
-    padding: 30px 20px;
-    margin-top: 30px;
-    flex-wrap: wrap; /* 화면 작아지면 줄바꿈 */
-}
-
-/* 다이어그램의 각 '열' (Input, Process, Output) */
-.diagram-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px; /* 노드 사이의 간격 */
-    flex-basis: 180px; /* 기본 너비 */
-}
-
-/* 다이어그램의 '중앙' 열 */
-.diagram-col.middle {
-    flex-basis: 220px; /* 가운데는 조금 더 넓게 */
-}
-
-/* 다이어그램의 '노드' (네모 박스) */
-.diagram-node {
-    background-color: #2a2d34;
-    border: 1px solid #555;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    width: 100%; /* 부모(col) 너비에 맞춤 */
-    color: #E0E0E0;
-    font-weight: 700;
-    box-sizing: border-box; /* 패딩이 너비를 밀어내지 않도록 */
-}
-
-/* 다이어그램 '화살표' */
-.diagram-arrow {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #00BFFF; /* 화살표 색상 */
-    font-size: 2.5em; /* 화살표 크기 */
-    font-weight: bold;
-    flex-grow: 1; /* 남는 공간 차지 */
-    text-align: center;
-    padding: 0 10px;
-}
-
-/* 화살표 위의 '설명 텍스트' */
-.diagram-arrow span {
-    font-size: 0.4em; /* 텍스트 크기 (em 기준이라 작아짐) */
-    color: #B0B0B0;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 400;
-    margin-bottom: 5px;
-}
-
-/* '수직' 화살표 */
-.diagram-arrow.vertical {
-    font-size: 2em;
-    margin: 10px 0;
-}
-.diagram-arrow.vertical span {
-     margin-bottom: 5px;
-}
-
-/* --- 12. 2-Column Image Grid (in projects) --- */
-.image-grid-2col {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 2개의 열을 1:1 비율로 */
-    gap: 20px; /* 이미지 사이 간격 */
-    align-items: stretch; /* (수정) 아이템 높이를 같게 늘림 */
-    margin-top: 20px;
-}
-
-.image-grid-2col .grid-item {
-    /* 각 아이템(이미지+캡션) */
-    display: flex; /* Flexbox 사용하여 */
-    flex-direction: column; /* 내용을 세로로 쌓음 */
-}
-
-.image-grid-2col .grid-item .project-demo {
-    border: 1px solid #333;
-    background: #000;
-    margin-bottom: 10px; /* 이미지와 캡션 사이 간격 */
-    flex-grow: 1; /* 남는 공간 차지 (이미지 영역) */
-    display: flex; /* 내부 이미지 정렬용 */
-    align-items: center; /* 세로 중앙 정렬 */
-    justify-content: center; /* 가로 중앙 정렬 */
-    overflow: hidden; /* 이미지가 넘치지 않도록 */
-    border-radius: 5px; /* (추가) 약간 둥글게 */
-}
-
-.image-grid-2col .grid-item .project-demo.no-bg {
-    background: none;
-    border: 1px solid #333;
-}
-
-/* (수정) 모든 이미지에 최대 높이 및 contain 적용 */
-.image-grid-2col .grid-item .project-demo img {
-    width: 100%;
-    height: auto;
-    max-height: 250px; /* (수정) 최대 높이 설정 (예: 250px, 필요시 조절) */
-    object-fit: contain; /* 비율 유지하며 포함 */
-    display: block;
-}
-
-/* (삭제) 로직 이미지 높이 제한 제거 - 불필요 */
-/* .image-grid-2col .grid-item .project-demo img[alt="HSV Classification Logic"] { ... } */
-
-
-.image-grid-2col .grid-item p { /* 캡션 스타일 */
-    text-align: center;
-    font-style: italic;
-    color: #B0B0B0;
-    margin-top: auto; /* 이미지 영역 아래에 붙도록 */
-    font-size: 0.9em;
-    padding-top: 5px;
-}
-
-
-/* (모바일 반응형) 화면이 768px보다 작아지면 1열로 변경 */
-@media (max-width: 768px) {
-    .image-grid-2col {
-        grid-template-columns: 1fr; /* 1열로 변경 */
-    }
-     .image-grid-2col .grid-item .project-demo img {
-        max-height: none; /* 모바일에선 높이 제한 해제 */
-    }
-}
-
-/* --- 13. System Architecture Diagram (HTML) --- */
-.arch-diagram {
-    background: #f9f9f9; /* 밝은 배경 */
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 25px;
-    margin-top: 30px;
-    text-align: center;
-    color: #333;
-}
-
-/* 상단 (Jetson) */
-.arch-tier.top {
-    border: 2px solid #555;
-    border-radius: 10px;
-    padding: 15px;
-    max-width: 300px;
-    margin: 0 auto 25px auto;
-    font-size: 1.2em;
-    font-weight: 700;
-}
-.arch-tier.top span {
-    display: block;
-    font-size: 0.8em;
-    font-weight: 400;
-    color: #666;
-    margin-top: 5px;
-}
-
-/* 하단 3개 모듈 (탐지, 제어, 앱) */
-.arch-tier.bottom {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* 3열 */
-    gap: 20px;
-}
-
-.arch-module {
-    border-radius: 10px;
-    padding: 20px;
-}
-.arch-module h3 { /* 파트 제목 (탐지 파트 ...) */
-    margin: 0 0 15px 0;
-    font-size: 1.3em;
-    color: #000;
-    padding-bottom: 10px;
-    border-bottom: 2px solid rgba(0,0,0,0.1);
-}
-.arch-module ul { /* 기능 목록 */
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.arch-module li { /* 기능 아이템 */
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 12px;
-    font-size: 0.95em;
-    color: #333;
-    font-weight: 700;
-}
-
-/* 색상 지정 */
-.arch-module.vision { background-color: #e6f7ff; border: 2px solid #b3e0ff; }
-.arch-module.control { background-color: #fff0f0; border: 2px solid #ffcccc; }
-.arch-module.app { background-color: #f0fff0; border: 2px solid #ccffcc; }
-
-
-/* --- 14. Motivation Diagram (HTML) --- */
-.motivation-diagram {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 2열 */
-    gap: 25px;
-    margin-top: 30px;
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 25px;
-    border-radius: 10px;
-}
-
-.motivation-box {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
-}
-.motivation-box h3 { /* "농가 인구 감소..." */
-    text-align: center;
-    margin: 0 0 20px 0;
-    font-size: 1.3em;
-    color: #333;
-}
-.motivation-sub-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-.motivation-item {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 10px;
-    padding: 20px 15px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-.motivation-item span { /* "농가 인구 감소", "숙성도 판단 오류" */
-    font-size: 1.1em;
-    font-weight: 700;
-    color: #222;
-    display: block;
-    margin-bottom: 8px;
-}
-.motivation-item p { /* "지속적 감소 추세" */
-    font-size: 0.9em;
-    color: #777;
-    margin: 0;
-    line-height: 1.4;
-}
-
-/* (모바일 반응형) 화면이 768px보다 작아지면 1열로 변경 */
-@media (max-width: 768px) {
-    .arch-tier.bottom, .motivation-diagram, .motivation-sub-grid {
-        grid-template-columns: 1fr; /* 모두 1열로 변경 */
-    }
+  font-family: var(--mono); font-size: .68rem; font-weight: 500;
+  padding: 3px 9px; border-radius: 5px;
+  background: var(--accent-glow); color: var(--accent);
+  border: 1px solid rgba(129,140,248,.12);
+}
+
+/* ── Stack ── */
+.stack-wrap {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.stack-wrap span {
+  padding: 9px 16px; border-radius: var(--radius-sm);
+  background: var(--glass); border: 1px solid var(--glass-border);
+  font-size: .85rem; font-weight: 500;
+  transition: all .3s;
+}
+.stack-wrap span:hover {
+  background: var(--accent-glow); color: var(--accent);
+  border-color: rgba(129,140,248,.18); transform: translateY(-2px);
+}
+
+/* ── Timeline ── */
+.timeline { position: relative; padding-left: 24px; margin-left: 6px; }
+.timeline::before {
+  content: ''; position: absolute; left: 3px; top: 6px; bottom: 6px;
+  width: 2px; border-radius: 1px;
+  background: linear-gradient(to bottom, var(--g1), var(--g2), transparent);
+}
+.tl-item {
+  position: relative; padding-bottom: 22px;
+  display: flex; gap: 16px; align-items: baseline;
+  font-size: .9rem;
+}
+.tl-item:last-child { padding-bottom: 0; }
+.tl-item::before {
+  content: ''; position: absolute; left: -24px; top: 8px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 10px var(--accent-glow);
+}
+.tl-date {
+  font-family: var(--mono); font-size: .75rem;
+  color: var(--accent); flex-shrink: 0; min-width: 64px;
+}
+.tl-item strong { color: #fff; }
+
+/* ── Contact ── */
+.contact-sub { color: var(--text-muted); margin-bottom: 28px; font-size: .95rem; }
+.contact-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+/* ── Footer ── */
+footer {
+  text-align: center; padding: 28px 0;
+  font-size: .78rem; color: var(--text-muted);
+  border-top: 1px solid var(--glass-border);
+}
+
+/* ── Scroll Reveal ── */
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .nav-links { gap: 14px; }
+  .nav-links a { font-size: .78rem; }
+  .research-grid { grid-template-columns: 1fr; }
+  .project-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .pub-item { flex-direction: column; gap: 8px; }
+  .pub-meta { flex-direction: row; }
+  .hero h1 { font-size: 2.2rem; }
+  .section { padding: 60px 0; }
 }
