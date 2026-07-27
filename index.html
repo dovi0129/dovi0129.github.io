@@ -17,7 +17,7 @@
 
 <!-- ================= masthead ================= -->
 <header class="masthead">
-  <h1>Minu Baek <span class="hangul">(백민우)</span></h1>
+  <h1>Minu Baek <span class="hangul" lang="ko">(백민우)</span></h1>
   <p class="tagline">Safe reinforcement learning &middot; Industrial AI &middot; Robotics</p>
   <p class="affil">
     M.S. student, Department of Computer Engineering, Graduate School of Software
@@ -58,7 +58,6 @@
     <li><a href="#stack">Software</a></li>
     <li><a href="#activities">Activities</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#colophon">Colophon</a></li>
   </ol>
   <p class="toc-keys">
     <kbd>j</kbd>/<kbd>k</kbd> section<br>
@@ -87,6 +86,13 @@
     physics-grounded digital twins, and uncertainty-calibrated safety layers to
     deploy learned policies only where the data supports them, and to abstain
     where it does not.
+  </p>
+  <p>
+    The same discipline applies one step earlier, to the measurements
+    themselves. Much of my day-to-day work is data analysis and anomaly
+    detection on large, unlabelled industrial records &mdash; deciding which
+    readings can be trusted at all, and with what false-alarm rate, before
+    anything is learned from them.
   </p>
 
   <dl class="facts">
@@ -126,6 +132,14 @@
     <dd>Coverage guarantees for surrogate models, including region-wise imbalance
         and Mondrian conformal prediction for heterogeneous operating regimes.</dd>
 
+    <dt>Anomaly detection on unlabelled industrial measurements</dt>
+    <dd>Data validation and outlier detection for metering and process records
+        that carry no ground truth, where the operational definition of an
+        anomaly is itself part of the deliverable: deterministic rule layers
+        first, conformal calibration of the false-alarm rate second, and an
+        explicit detectable envelope outside of which the detector abstains
+        rather than guesses.</dd>
+
     <dt>Tail-risk-aware, capacity-constrained control</dt>
     <dd>Reducing rare but costly failures by constraining policy capacity, rather
         than by optimizing the mean return alone.</dd>
@@ -140,7 +154,8 @@
     <code>Offline RL</code> <code>Safe RL</code> <code>Causal Identifiability</code>
     <code>Closed-Loop Confounding</code> <code>Digital Twin</code>
     <code>Conformal Prediction</code> <code>Tail-Risk</code>
-    <code>Industrial Process Control</code>
+    <code>Anomaly Detection</code> <code>Data Validation</code>
+    <code>Smart Metering</code> <code>Industrial Process Control</code>
   </p>
 
   <h3 id="research-pipeline"><span class="secno">2.2</span> Pipeline</h3>
@@ -311,27 +326,37 @@
     </li>
   </ol>
 
-  <h3 id="pub-domestic"><span class="secno">3.2</span> Domestic conferences (KICS, 한국통신학회)</h3>
+  <h3 id="pub-domestic"><span class="secno">3.2</span> Domestic conferences</h3>
+
+  <p>
+    Presented at the Korea Institute of Communications and Information Sciences
+    (KICS). Titles are translated; the papers themselves are in Korean.
+  </p>
 
   <ol class="pubs">
     <li>
-      <p class="pub-title" lang="ko">Conformal Prediction을 이용한 제지공정 수분 Surrogate의
-        보장률 검증: 영역별 불균형과 Mondrian CP 기반 해소</p>
-      <p class="pub-venue">KICS Summer Conference 2026, poster, 17&ndash;19 June 2026, Jeju</p>
+      <p class="pub-title">Verifying the Coverage Guarantee of a Papermaking
+        Moisture Surrogate under Conformal Prediction: Region-Wise Imbalance and
+        a Mondrian CP Remedy</p>
+      <p class="pub-venue">KICS Summer Conference 2026, poster, 17&ndash;19 June 2026,
+        Jeju (in Korean)</p>
     </li>
     <li>
-      <p class="pub-title" lang="ko">제지공정 강화학습 안전제어를 위한 데이터 기반 운전 영역
-        정량화 및 품질 영향 분석</p>
-      <p class="pub-venue">KICS Winter Conference 2026, poster, 4&ndash;6 February 2026</p>
+      <p class="pub-title">Data-Driven Quantification of the Operating Region and
+        Its Effect on Product Quality for Safe Reinforcement Learning Control of
+        a Papermaking Process</p>
+      <p class="pub-venue">KICS Winter Conference 2026, poster, 4&ndash;6 February 2026
+        (in Korean)</p>
     </li>
     <li>
-      <p class="pub-title" lang="ko">강화학습 기반 제지 공정 자율 운전: 초기 안정화 가속화 전략</p>
-      <p class="pub-venue">KICS Fall Conference 2025, poster</p>
+      <p class="pub-title">Reinforcement Learning-Based Autonomous Operation of a
+        Papermaking Process: A Strategy for Accelerating Initial Stabilization</p>
+      <p class="pub-venue">KICS Fall Conference 2025, poster (in Korean)</p>
     </li>
     <li>
-      <p class="pub-title" lang="ko">실시간 제지공정 운영 효율화를 위한 LLM과 RAG 기반
-        대화형 AI 어시스턴트 설계</p>
-      <p class="pub-venue">KICS Fall Conference 2025, poster</p>
+      <p class="pub-title">Design of an LLM- and RAG-Based Conversational AI
+        Assistant for Real-Time Papermaking Process Operation</p>
+      <p class="pub-venue">KICS Fall Conference 2025, poster (in Korean)</p>
     </li>
   </ol>
 </section>
@@ -346,6 +371,17 @@
         autonomous papermaking process control. Published in <em>IEEE Transactions
         on Industrial Informatics</em>, 2026.
         <span class="tags"><code>offline RL</code> <code>digital twin</code> <code>PyTorch</code></span></dd>
+
+    <dt>Green Button &mdash; smart-meter validation and anomaly detection</dt>
+    <dd>Missing-value handling, validation&ndash;estimation&ndash;editing, and outlier
+        detection over industrial smart-meter interval data (4,209 meters,
+        about 3.05 million meter-days, 2020&ndash;2022) for an ETRI research
+        programme. The records carry no anomaly labels, so the pipeline is built
+        around reproducible rule layers, conformal control of the false-alarm
+        rate, pre-registered evaluation, and counterfactual replay of injected
+        events. Manuscript in preparation.
+        <span class="tags"><code>anomaly detection</code> <code>conformal</code>
+          <code>DuckDB</code> <code>pandas</code></span></dd>
 
     <dt>Industrial Monitoring Assistant</dt>
     <dd>Operator support system built on React and FastAPI: document retrieval,
@@ -374,7 +410,8 @@
     <tbody>
       <tr><th scope="row">Language</th><td>Python, C, MATLAB, shell</td></tr>
       <tr><th scope="row">Learning</th><td>PyTorch, Gymnasium, Stable-Baselines3, d3rlpy</td></tr>
-      <tr><th scope="row">Modelling</th><td>scikit-learn, XGBoost, LightGBM, NumPy, pandas, SciPy</td></tr>
+      <tr><th scope="row">Modelling</th><td>scikit-learn, XGBoost, LightGBM, NumPy, SciPy</td></tr>
+      <tr><th scope="row">Data</th><td>pandas, DuckDB, Apache Arrow, Parquet</td></tr>
       <tr><th scope="row">Plotting</th><td>Matplotlib, Plotly</td></tr>
       <tr><th scope="row">Robotics</th><td>ROS, NVIDIA Jetson, Intel RealSense, CUDA</td></tr>
       <tr><th scope="row">Systems</th><td>Linux, git, tmux, SSH, LaTeX</td></tr>
@@ -393,6 +430,12 @@
       <tr><th scope="col">Date</th><th scope="col">Item</th></tr>
     </thead>
     <tbody>
+      <tr>
+        <td>2026-07&ndash;</td>
+        <td>ETRI Green Button research project &mdash; validation, estimation, and
+            editing (VEE) and anomaly detection for industrial smart-meter data
+            <span class="status">ongoing</span></td>
+      </tr>
       <tr>
         <td>2026-08</td>
         <td>Talk at the UDM Workshop, KDD 2026, Jeju <span class="status">scheduled</span></td>
@@ -467,38 +510,6 @@
   </p>
 </section>
 
-<!-- ---------------- 8. Colophon ---------------- -->
-<section id="colophon">
-  <h2><span class="secno">8.</span> Colophon<a class="anchor" href="#colophon" aria-label="Permalink to Colophon">&para;</a></h2>
-
-  <p>
-    This page is hand-written HTML and CSS with about two hundred lines of
-    vanilla JavaScript. No frameworks, no web fonts, no analytics, no cookies.
-    It is one HTML file, one stylesheet, and one script &mdash; under 60&nbsp;kB
-    in total, served as static files. Everything
-    except the section highlighting, the publication filter, and the copy buttons
-    works with JavaScript disabled.
-  </p>
-
-  <table class="grid">
-    <caption>Table 3. Keyboard shortcuts.</caption>
-    <colgroup><col class="col-key"><col></colgroup>
-    <tbody>
-      <tr><th scope="row"><kbd>j</kbd> / <kbd>k</kbd></th><td>next / previous section</td></tr>
-      <tr><th scope="row"><kbd>g</kbd> / <kbd>G</kbd></th><td>top / bottom of document</td></tr>
-      <tr><th scope="row"><kbd>/</kbd></th><td>filter the publication list</td></tr>
-      <tr><th scope="row"><kbd>Esc</kbd></th><td>clear the filter</td></tr>
-      <tr><th scope="row"><kbd>Tab</kbd></th><td>walk every link and control, in reading order</td></tr>
-    </tbody>
-  </table>
-
-  <p>
-    The source is at
-    <a href="https://github.com/dovi0129/dovi0129.github.io">github.com/dovi0129/dovi0129.github.io</a>.
-    Printing this page drops the navigation and prints link targets in full.
-  </p>
-</section>
-
 </main>
 </div><!-- /.layout -->
 
@@ -507,6 +518,9 @@
   <p>
     Copyright &copy; 2026 Minu Baek &middot;
     Last modified: 2026-07-27 &middot;
+    Source:
+    <a href="https://github.com/dovi0129/dovi0129.github.io">github.com/dovi0129/dovi0129.github.io</a>
+    &middot;
     <a href="#content">Back to top</a>
   </p>
 </footer>
