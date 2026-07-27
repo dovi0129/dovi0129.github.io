@@ -1,255 +1,518 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minu Baek — RL &amp; Industrial AI Researcher</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minu Baek &mdash; Safe Reinforcement Learning for Industrial Process Control</title>
+<meta name="description" content="Minu Baek (백민우). M.S. student, Eco AI Lab, Hanbat National University. Safe and offline reinforcement learning, causal identifiability, physics-grounded digital twins for industrial process control.">
+<meta name="author" content="Minu Baek">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23fff'/%3E%3Ctext x='8' y='12' font-family='monospace' font-size='12' text-anchor='middle' fill='%23000'%3Em%3C/text%3E%3C/svg%3E">
 </head>
 <body>
-    <div class="bg-orbs"><div class="orb"></div><div class="orb"></div><div class="orb"></div></div>
 
-    <!-- Nav -->
-    <nav class="navbar">
-        <div class="nav-inner">
-            <a href="#" class="nav-logo">MB</a>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#research">Research</a>
-                <a href="#publications">Publications</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </div>
-    </nav>
+<a class="skip" href="#content">Skip to content</a>
 
-    <!-- Hero -->
-    <section class="hero" id="hero">
-        <div class="container">
-            <div class="hero-tag"><span class="dot"></span>M.S. Student · Hanbat National University</div>
-            <h1>Minu Baek</h1>
-            <p class="hero-sub">Reinforcement Learning · Industrial AI · Robotics</p>
-            <p class="hero-affil">
-                소프트웨어융합대학원 컴퓨터공학과 석사과정<br>
-                <a href="https://sites.google.com/view/ecoai/introduction?authuser=0" target="_blank">Eco AI Lab</a>
-            </p>
-            <div class="hero-actions">
-                <a href="mailto:bmw5779@gmail.com" class="btn btn-primary">Contact Me</a>
-                <a href="https://github.com/dovi0129" target="_blank" class="btn btn-ghost">GitHub</a>
-            </div>
-        </div>
-    </section>
+<div class="page">
 
-    <!-- About -->
-    <section id="about" class="section">
-        <div class="container">
-            <p class="label">// About</p>
-            <h2>About Me</h2>
-            <div class="about-text">
-                <p>강화학습과 디지털 트윈 기반의 산업 공정 자율화를 연구하고 있습니다. 복잡한 제조 환경에서 안전하고 효율적인 AI 제어 시스템을 설계하는 데 관심을 두고 있으며, 실제 산업 데이터를 활용한 실용적인 연구를 지향합니다.</p>
-            </div>
-        </div>
-    </section>
+<!-- ================= masthead ================= -->
+<header class="masthead">
+  <h1>Minu Baek <span class="hangul">(백민우)</span></h1>
+  <p class="tagline">Safe reinforcement learning &middot; Industrial AI &middot; Robotics</p>
+  <p class="affil">
+    M.S. student, Department of Computer Engineering, Graduate School of Software
+    Convergence, Hanbat National University &mdash;
+    <a href="https://sites.google.com/view/ecoai/introduction?authuser=0">Eco AI Lab</a>
+  </p>
+  <nav class="menu" aria-label="Section menu">
+    <a href="#about">About</a> |
+    <a href="#research">Research</a> |
+    <a href="#publications">Publications</a> |
+    <a href="#projects">Projects</a> |
+    <a href="#stack">Software</a> |
+    <a href="#activities">Activities</a> |
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-    <!-- Research -->
-    <section id="research" class="section">
-        <div class="container">
-            <p class="label">// Research Focus</p>
-            <h2>Research</h2>
-            <div class="research-grid">
-                <div class="card reveal">
-                    <h3>Safe & Offline RL</h3>
-                    <p>산업 공정 제어를 위한 안전 강화학습 및 오프라인 RL</p>
-                </div>
-                <div class="card reveal">
-                    <h3>Digital Twin</h3>
-                    <p>제조 시스템 최적화를 위한 하이브리드 디지털 트윈 모델링</p>
-                </div>
-                <div class="card reveal">
-                    <h3>LLM & RAG</h3>
-                    <p>실시간 공정 모니터링을 위한 LLM/RAG 기반 운영 지원 시스템</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="layout">
 
-    <!-- Publications -->
-    <section id="publications" class="section">
-        <div class="container">
-            <p class="label">// Publications</p>
-            <h2>Selected Publications</h2>
-            <div class="pub-list">
-                <div class="pub-item reveal">
-                    <div class="pub-meta">
-                        <span class="pub-badge journal">Journal</span>
-                        <span class="pub-year">2025</span>
-                    </div>
-                    <div class="pub-body">
-                        <h3>A Three-Stage Reinforcement Learning Pipeline for Autonomous Process Control in the Papermaking Industry</h3>
-                        <p class="pub-venue">IEEE Transactions on Industrial Informatics (TII) — Accepted</p>
-                    </div>
-                </div>
-                <div class="pub-item reveal">
-                    <div class="pub-meta">
-                        <span class="pub-badge conf">Conference</span>
-                        <span class="pub-year">2025</span>
-                    </div>
-                    <div class="pub-body">
-                        <h3>Multi-Stage Reinforcement Learning for Robust Charging of Quantum Batteries</h3>
-                        <p class="pub-venue">AAAI 2025 Student Abstract — Accepted</p>
-                    </div>
-                </div>
-                <div class="pub-item reveal">
-                    <div class="pub-meta">
-                        <span class="pub-badge poster">Poster</span>
-                        <span class="pub-year">2026</span>
-                    </div>
-                    <div class="pub-body">
-                        <h3>제지공정 강화학습 안전제어를 위한 데이터 기반 운전 영역 정량화 및 품질 영향 분석</h3>
-                        <p class="pub-venue">2026 동계 한국통신학회 학술대회</p>
-                    </div>
-                </div>
-                <div class="pub-item reveal">
-                    <div class="pub-meta">
-                        <span class="pub-badge poster">Poster</span>
-                        <span class="pub-year">2025</span>
-                    </div>
-                    <div class="pub-body">
-                        <h3>강화학습 기반 제지 공정 자율 운전: 초기 안정화 가속화 전략</h3>
-                        <p class="pub-venue">2025 한국통신학회 추계종합학술발표회</p>
-                    </div>
-                </div>
-                <div class="pub-item reveal">
-                    <div class="pub-meta">
-                        <span class="pub-badge poster">Poster</span>
-                        <span class="pub-year">2025</span>
-                    </div>
-                    <div class="pub-body">
-                        <h3>실시간 제지공정 운영 효율화를 위한 LLM과 RAG 기반 대화형 AI 어시스턴트 설계</h3>
-                        <p class="pub-venue">2025 한국통신학회 추계종합학술발표회</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ================= table of contents ================= -->
+<nav class="toc" id="toc" aria-labelledby="toc-title">
+  <p class="toc-title" id="toc-title">Contents</p>
+  <ol>
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a>
+      <ol>
+        <li><a href="#research-topics">Topics</a></li>
+        <li><a href="#research-pipeline">Pipeline</a></li>
+      </ol>
+    </li>
+    <li><a href="#publications">Publications</a>
+      <ol>
+        <li><a href="#pub-intl">Journal &amp; international</a></li>
+        <li><a href="#pub-domestic">Domestic conferences</a></li>
+      </ol>
+    </li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#stack">Software</a></li>
+    <li><a href="#activities">Activities</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#colophon">Colophon</a></li>
+  </ol>
+  <p class="toc-keys">
+    <kbd>j</kbd>/<kbd>k</kbd> section<br>
+    <kbd>g</kbd>/<kbd>G</kbd> top/bottom<br>
+    <kbd>/</kbd> filter publications
+  </p>
+</nav>
 
-    <!-- Projects -->
-    <section id="projects" class="section">
-        <div class="container">
-            <p class="label">// Projects</p>
-            <h2>Projects</h2>
-            <div class="project-list">
-                <div class="project-row reveal">
-                    <div class="project-info">
-                        <h3>PaperRL</h3>
-                        <p>디지털 트윈 + 3단계 강화학습 파이프라인 기반 제지 공정 자율 제어</p>
-                    </div>
-                    <div class="project-tags">
-                        <span>RL</span><span>Digital Twin</span><span>PyTorch</span>
-                    </div>
-                </div>
-                <div class="project-row reveal">
-                    <div class="project-info">
-                        <h3>Industrial Monitoring Assistant</h3>
-                        <p>React + FastAPI 기반 실시간 공정 모니터링 및 RAG Q&A 시스템</p>
-                    </div>
-                    <div class="project-tags">
-                        <span>LLM</span><span>RAG</span><span>React</span><span>FastAPI</span>
-                    </div>
-                </div>
-                <div class="project-row reveal">
-                    <div class="project-info">
-                        <h3>Strawberry Harvest AI</h3>
-                        <p>비전 기반 딸기 숙성도 분류 및 로봇 수확 자동화 파이프라인</p>
-                    </div>
-                    <div class="project-tags">
-                        <span>CV</span><span>Robotics</span><span>ROS</span><span>Jetson</span>
-                    </div>
-                </div>
-                <div class="project-row reveal">
-                    <div class="project-info">
-                        <h3>Indy7 + OpenMANIPULATOR-X</h3>
-                        <p>Jetson Orin Nano + RealSense 기반 로봇 제어 스택</p>
-                    </div>
-                    <div class="project-tags">
-                        <span>ROS</span><span>Jetson</span><span>RealSense</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ================= content ================= -->
+<main id="content">
 
-    <!-- Stack -->
-    <section id="stack" class="section">
-        <div class="container">
-            <p class="label">// Tech Stack</p>
-            <h2>Core Stack</h2>
-            <div class="stack-wrap reveal">
-                <span>Python</span><span>PyTorch</span><span>Gymnasium</span>
-                <span>Stable-Baselines3</span><span>NumPy</span><span>Pandas</span>
-                <span>Plotly</span><span>ROS</span><span>CUDA</span>
-                <span>Jetson</span><span>Intel RealSense</span><span>Git</span>
-            </div>
-        </div>
-    </section>
+<!-- ---------------- 1. About ---------------- -->
+<section id="about">
+  <h2><span class="secno">1.</span> About<a class="anchor" href="#about" aria-label="Permalink to About">&para;</a></h2>
 
-    <!-- Awards -->
-    <section id="awards" class="section">
-        <div class="container">
-            <p class="label">// Awards & Activities</p>
-            <h2>Milestones</h2>
-            <div class="timeline">
-                <div class="tl-item reveal">
-                    <span class="tl-date">2026.02</span>
-                    <div><strong>ADsP (데이터분석 준전문가)</strong> 합격</div>
-                </div>
-                <div class="tl-item reveal">
-                    <span class="tl-date">2026.01</span>
-                    <div><strong>AAAI 2025</strong> 학회 참가 (Philadelphia, USA)</div>
-                </div>
-                <div class="tl-item reveal">
-                    <span class="tl-date">2025.11</span>
-                    <div><strong>캡스톤디자인 경진대회 우수상</strong> — 한국통신학회 추계종합학술발표회</div>
-                </div>
-                <div class="tl-item reveal">
-                    <span class="tl-date">2025.10</span>
-                    <div><strong>대전 창의적 종합설계 경진대회 장려상</strong> — 딸기 수확 자동화 로봇</div>
-                </div>
-                <div class="tl-item reveal">
-                    <span class="tl-date">2025.07~</span>
-                    <div><strong>산학협력 프로젝트</strong> — 자율주행 주차로봇 SW 최적화</div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <p>
+    I work on <strong>safe and trustworthy reinforcement learning for industrial
+    process control</strong>. My research is organized around a single question:
+    <em>when</em> can a control policy be trusted, if all we have is real
+    closed-loop operating logs from a running plant?
+  </p>
+  <p>
+    Closed-loop logs are convenient but treacherous &mdash; the controller that
+    generated them is itself part of the system, so action effects are often not
+    identifiable from the data. I combine identifiability and causal diagnosis,
+    physics-grounded digital twins, and uncertainty-calibrated safety layers to
+    deploy learned policies only where the data supports them, and to abstain
+    where it does not.
+  </p>
 
-    <!-- Contact -->
-    <section id="contact" class="section section-center">
-        <div class="container">
-            <p class="label">// Contact</p>
-            <h2>Let's Connect</h2>
-            <p class="contact-sub">연구 협업이나 문의 사항이 있으시면 연락주세요.</p>
-            <div class="contact-actions">
-                <a href="mailto:bmw5779@gmail.com" class="btn btn-primary">bmw5779@gmail.com</a>
-                <a href="https://github.com/dovi0129" target="_blank" class="btn btn-ghost">GitHub</a>
-                <a href="https://sites.google.com/view/ecoai/introduction?authuser=0" target="_blank" class="btn btn-ghost">Eco AI Lab</a>
-            </div>
-        </div>
-    </section>
+  <dl class="facts">
+    <dt>Affiliation</dt>
+    <dd>Eco AI Lab, Hanbat National University, Daejeon, Republic of Korea</dd>
+    <dt>Advisor</dt>
+    <dd>Prof. Sangkeum Lee</dd>
+    <dt>Domain</dt>
+    <dd>Papermaking process control; 11 months of plant operation, 687 production lots</dd>
+    <dt>Email</dt>
+    <dd><a href="mailto:bmw5779@o365.hanbat.ac.kr">bmw5779@o365.hanbat.ac.kr</a></dd>
+  </dl>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">&copy; 2025 Minu Baek</div>
-    </footer>
+<!-- ---------------- 2. Research ---------------- -->
+<section id="research">
+  <h2><span class="secno">2.</span> Research<a class="anchor" href="#research" aria-label="Permalink to Research">&para;</a></h2>
 
-    <script>
-        const obs = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-    </script>
+  <h3 id="research-topics"><span class="secno">2.1</span> Topics</h3>
+
+  <dl class="topics">
+    <dt>Safe and offline reinforcement learning</dt>
+    <dd>Autonomous control of continuous industrial processes learned from logged
+        operation, without exploratory interaction on the live plant.</dd>
+
+    <dt>Identifiability and causal diagnosis</dt>
+    <dd>Deciding <em>when</em> offline policy learning is reliable on closed-loop
+        logs, and abstaining when action effects are not identifiable under
+        controller-induced confounding.</dd>
+
+    <dt>Hybrid, physics-grounded digital twins</dt>
+    <dd>Sample-efficient and physically consistent surrogates for policy learning,
+        validated on a twin built from 11 months of papermaking operation across
+        687 production lots.</dd>
+
+    <dt>Uncertainty quantification and conformal prediction</dt>
+    <dd>Coverage guarantees for surrogate models, including region-wise imbalance
+        and Mondrian conformal prediction for heterogeneous operating regimes.</dd>
+
+    <dt>Tail-risk-aware, capacity-constrained control</dt>
+    <dd>Reducing rare but costly failures by constraining policy capacity, rather
+        than by optimizing the mean return alone.</dd>
+
+    <dt>LLM- and RAG-based operator support</dt>
+    <dd>Retrieval-grounded assistants for real-time process monitoring and
+        document lookup on the shop floor.</dd>
+  </dl>
+
+  <p class="keywords">
+    <span class="kw-label">Keywords:</span>
+    <code>Offline RL</code> <code>Safe RL</code> <code>Causal Identifiability</code>
+    <code>Closed-Loop Confounding</code> <code>Digital Twin</code>
+    <code>Conformal Prediction</code> <code>Tail-Risk</code>
+    <code>Industrial Process Control</code>
+  </p>
+
+  <h3 id="research-pipeline"><span class="secno">2.2</span> Pipeline</h3>
+
+  <p>
+    The stages below describe how a policy moves from raw plant logs to a
+    deployment decision. The gate at the end is deliberate: an abstention is a
+    valid, and often correct, output.
+  </p>
+
+  <figure class="pipeline">
+   <div class="diagram">
+    <svg viewBox="0 0 680 250" role="img" aria-labelledby="fig1-title fig1-desc">
+      <title id="fig1-title">Research pipeline from closed-loop plant logs to a deployment decision</title>
+      <desc id="fig1-desc">Six stages: closed-loop logs, identifiability and causal
+        diagnosis, physics-grounded digital twin, offline and safe reinforcement
+        learning, a conformal safety layer, and a support-aware decision gate that
+        outputs either deploy or abstain.</desc>
+
+      <defs>
+        <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5"
+                markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/>
+        </marker>
+      </defs>
+
+      <g class="dg-box">
+        <rect x="15"  y="24"  width="190" height="46"/>
+        <rect x="245" y="24"  width="190" height="46"/>
+        <rect x="475" y="24"  width="190" height="46"/>
+        <rect x="475" y="120" width="190" height="46"/>
+        <rect x="245" y="120" width="190" height="46"/>
+        <rect x="15"  y="120" width="190" height="46"/>
+      </g>
+
+      <g class="dg-out">
+        <rect x="15"  y="204" width="90" height="30"/>
+        <rect x="115" y="204" width="90" height="30"/>
+      </g>
+
+      <g class="dg-line">
+        <line x1="205" y1="47"  x2="241" y2="47"  marker-end="url(#arw)"/>
+        <line x1="435" y1="47"  x2="471" y2="47"  marker-end="url(#arw)"/>
+        <path  d="M 570 70 V 116"                 marker-end="url(#arw)"/>
+        <line x1="475" y1="143" x2="439" y2="143" marker-end="url(#arw)"/>
+        <line x1="245" y1="143" x2="209" y2="143" marker-end="url(#arw)"/>
+        <path  d="M 110 166 V 186 H 60 V 200"     marker-end="url(#arw)"/>
+        <path  d="M 110 186 H 160 V 200"          marker-end="url(#arw)"/>
+      </g>
+
+      <g class="dg-text">
+        <text x="110" y="43">Closed-loop logs</text>
+        <text x="110" y="59">687 lots, 11 months</text>
+
+        <text x="340" y="43">Identifiability &amp;</text>
+        <text x="340" y="59">causal diagnosis</text>
+
+        <text x="570" y="43">Physics-grounded</text>
+        <text x="570" y="59">digital twin</text>
+
+        <text x="570" y="139">Offline / safe RL</text>
+        <text x="570" y="155">policy learning</text>
+
+        <text x="340" y="139">Conformal safety</text>
+        <text x="340" y="155">coverage guarantee</text>
+
+        <text x="110" y="139">Decision gate</text>
+        <text x="110" y="155">(support-aware)</text>
+
+        <text x="60"  y="223">deploy</text>
+        <text x="160" y="223">abstain</text>
+      </g>
+    </svg>
+   </div>
+
+   <!-- narrow screens: the same six stages, set as a list -->
+   <ol class="pipeline-list">
+     <li>Closed-loop logs <span class="sub">687 lots, 11 months</span></li>
+     <li>Identifiability &amp; causal diagnosis</li>
+     <li>Physics-grounded digital twin</li>
+     <li>Offline / safe RL policy learning</li>
+     <li>Conformal safety, coverage guarantee</li>
+     <li>Decision gate <span class="sub">support-aware &rarr; deploy | abstain</span></li>
+   </ol>
+
+    <figcaption>
+      Figure 1. From logged plant operation to a deployment decision. The six
+      stages run in order and end at a gate that is allowed to abstain.
+    </figcaption>
+  </figure>
+</section>
+
+<!-- ---------------- 3. Publications ---------------- -->
+<section id="publications">
+  <h2><span class="secno">3.</span> Publications<a class="anchor" href="#publications" aria-label="Permalink to Publications">&para;</a></h2>
+
+  <p>
+    Author list order is as published; my name is set in bold. Full record on
+    <a href="https://scholar.google.com/citations?user=ATNX478AAAAJ&amp;hl=ko">Google Scholar</a>.
+  </p>
+
+  <form class="filter" role="search" onsubmit="return false">
+    <label for="pubfilter">Filter:</label>
+    <input type="search" id="pubfilter" name="pubfilter" autocomplete="off"
+           spellcheck="false" placeholder="title, venue, year, author&hellip;">
+    <span class="filter-count" id="pubcount" aria-live="polite"></span>
+  </form>
+
+  <h3 id="pub-intl"><span class="secno">3.1</span> Journal &amp; international venues</h3>
+
+  <ol class="pubs">
+    <li>
+      <p class="pub-title">A Three-Stage Reinforcement Learning Pipeline for Autonomous
+        Process Control in the Papermaking Industry</p>
+      <p class="pub-authors"><strong>Minu Baek</strong>, Sangkeum Lee</p>
+      <p class="pub-venue"><em>IEEE Transactions on Industrial Informatics</em>, 2026</p>
+      <p class="pub-links">
+        [<a href="https://doi.org/10.1109/TII.2026.3682018">DOI</a>]
+        [<a class="js-bib" href="#" data-target="bib-tii">BibTeX</a>]
+      </p>
+      <pre class="bib" id="bib-tii" hidden>@article{baek2026threestage,
+  author  = {Baek, Minu and Lee, Sangkeum},
+  title   = {A Three-Stage Reinforcement Learning Pipeline for Autonomous
+             Process Control in the Papermaking Industry},
+  journal = {IEEE Transactions on Industrial Informatics},
+  year    = {2026},
+  doi     = {10.1109/TII.2026.3682018}
+}</pre>
+    </li>
+
+    <li>
+      <p class="pub-title">Carbon-Conformal Manufacturing: Conformal Prediction-Guided
+        Carbon Emission Optimization in Paper-Mill Energy Systems</p>
+      <p class="pub-authors">Gihun Gil, <strong>Minu Baek</strong>, Jio Yoo, Seoyoung Lee,
+        Yeojin Jang, Yoonmee Doh, Jinyoung Choi, Sangkeum Lee</p>
+      <p class="pub-venue"><em>Applied Energy</em>, vol. 421, art. no. 128200, 2026</p>
+      <p class="pub-links">
+        [<a href="https://doi.org/10.1016/j.apenergy.2026.128200">DOI</a>]
+        [<a class="js-bib" href="#" data-target="bib-ae">BibTeX</a>]
+      </p>
+      <pre class="bib" id="bib-ae" hidden>@article{gil2026carbon,
+  author  = {Gil, Gihun and Baek, Minu and Yoo, Jio and Lee, Seoyoung and
+             Jang, Yeojin and Doh, Yoonmee and Choi, Jinyoung and Lee, Sangkeum},
+  title   = {Carbon-Conformal Manufacturing: Conformal Prediction-Guided Carbon
+             Emission Optimization in Paper-Mill Energy Systems},
+  journal = {Applied Energy},
+  volume  = {421},
+  pages   = {128200},
+  year    = {2026},
+  doi     = {10.1016/j.apenergy.2026.128200}
+}</pre>
+    </li>
+
+    <li>
+      <p class="pub-title">Less Can Be Safer: Tail-Risk Reduction via Capacity-Constrained
+        Policies in Industrial Reinforcement Learning</p>
+      <p class="pub-venue">UDM Workshop @ <em>KDD</em> 2026, Jeju, Republic of Korea
+        <span class="status">accepted</span></p>
+    </li>
+
+    <li>
+      <p class="pub-title">Multi-Stage Reinforcement Learning for Robust Charging of
+        Quantum Batteries</p>
+      <p class="pub-venue"><em>AAAI</em> 2026, Student Abstract</p>
+      <p class="pub-links">
+        [<a href="https://doi.org/10.1609/aaai.v40i48.42264">DOI</a>]
+      </p>
+    </li>
+  </ol>
+
+  <h3 id="pub-domestic"><span class="secno">3.2</span> Domestic conferences (KICS, 한국통신학회)</h3>
+
+  <ol class="pubs">
+    <li>
+      <p class="pub-title" lang="ko">Conformal Prediction을 이용한 제지공정 수분 Surrogate의
+        보장률 검증: 영역별 불균형과 Mondrian CP 기반 해소</p>
+      <p class="pub-venue">KICS Summer Conference 2026, poster, 17&ndash;19 June 2026, Jeju</p>
+    </li>
+    <li>
+      <p class="pub-title" lang="ko">제지공정 강화학습 안전제어를 위한 데이터 기반 운전 영역
+        정량화 및 품질 영향 분석</p>
+      <p class="pub-venue">KICS Winter Conference 2026, poster, 4&ndash;6 February 2026</p>
+    </li>
+    <li>
+      <p class="pub-title" lang="ko">강화학습 기반 제지 공정 자율 운전: 초기 안정화 가속화 전략</p>
+      <p class="pub-venue">KICS Fall Conference 2025, poster</p>
+    </li>
+    <li>
+      <p class="pub-title" lang="ko">실시간 제지공정 운영 효율화를 위한 LLM과 RAG 기반
+        대화형 AI 어시스턴트 설계</p>
+      <p class="pub-venue">KICS Fall Conference 2025, poster</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ---------------- 4. Projects ---------------- -->
+<section id="projects">
+  <h2><span class="secno">4.</span> Projects<a class="anchor" href="#projects" aria-label="Permalink to Projects">&para;</a></h2>
+
+  <dl class="projects">
+    <dt>PaperRL</dt>
+    <dd>Hybrid digital twin and three-stage reinforcement learning pipeline for
+        autonomous papermaking process control. Published in <em>IEEE Transactions
+        on Industrial Informatics</em>, 2026.
+        <span class="tags"><code>offline RL</code> <code>digital twin</code> <code>PyTorch</code></span></dd>
+
+    <dt>Industrial Monitoring Assistant</dt>
+    <dd>Operator support system built on React and FastAPI: document retrieval,
+        real-time question answering, and live process monitoring.
+        <span class="tags"><code>LLM</code> <code>RAG</code> <code>React</code> <code>FastAPI</code></span></dd>
+
+    <dt>Strawberry Detection &amp; Harvesting</dt>
+    <dd>Vision-based ripeness estimation and robotic harvesting pipeline for smart
+        agriculture; HSV and depth-angle grasp planning on an embedded platform.
+        <span class="tags"><code>CV</code> <code>ROS</code> <code>Jetson</code></span></dd>
+
+    <dt>Indy7 + OpenMANIPULATOR-X control stack</dt>
+    <dd>Robot control and integration workflow on Jetson Orin Nano with an Intel
+        RealSense depth camera.
+        <span class="tags"><code>ROS</code> <code>Jetson</code> <code>RealSense</code></span></dd>
+  </dl>
+</section>
+
+<!-- ---------------- 5. Software ---------------- -->
+<section id="stack">
+  <h2><span class="secno">5.</span> Software<a class="anchor" href="#stack" aria-label="Permalink to Software">&para;</a></h2>
+
+  <table class="grid">
+    <caption>Table 1. Tools in regular use.</caption>
+    <colgroup><col class="col-key"><col></colgroup>
+    <tbody>
+      <tr><th scope="row">Language</th><td>Python, C, MATLAB, shell</td></tr>
+      <tr><th scope="row">Learning</th><td>PyTorch, Gymnasium, Stable-Baselines3, d3rlpy</td></tr>
+      <tr><th scope="row">Modelling</th><td>scikit-learn, XGBoost, LightGBM, NumPy, pandas, SciPy</td></tr>
+      <tr><th scope="row">Plotting</th><td>Matplotlib, Plotly</td></tr>
+      <tr><th scope="row">Robotics</th><td>ROS, NVIDIA Jetson, Intel RealSense, CUDA</td></tr>
+      <tr><th scope="row">Systems</th><td>Linux, git, tmux, SSH, LaTeX</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ---------------- 6. Activities ---------------- -->
+<section id="activities">
+  <h2><span class="secno">6.</span> Activities<a class="anchor" href="#activities" aria-label="Permalink to Activities">&para;</a></h2>
+
+  <table class="grid log">
+    <caption>Table 2. Awards, competitions, and academic activities, most recent first.</caption>
+    <colgroup><col class="col-date"><col></colgroup>
+    <thead>
+      <tr><th scope="col">Date</th><th scope="col">Item</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2026-08</td>
+        <td>Talk at the UDM Workshop, KDD 2026, Jeju <span class="status">scheduled</span></td>
+      </tr>
+      <tr>
+        <td>2026-06</td>
+        <td>KICS Summer Conference, poster presentation, Jeju</td>
+      </tr>
+      <tr>
+        <td>2026-02-27</td>
+        <td>ADsP (Advanced Data Analytics Semi-Professional) certification</td>
+      </tr>
+      <tr>
+        <td>2026-02-05</td>
+        <td>KICS idea competition &mdash; RL-based context-aware adaptive semantic
+            transmission system</td>
+      </tr>
+      <tr>
+        <td>2026-02</td>
+        <td>KICS Winter Conference, poster presentation</td>
+      </tr>
+      <tr>
+        <td>2026-01</td>
+        <td>AAAI 2026, attended</td>
+      </tr>
+      <tr>
+        <td>2025-11-20</td>
+        <td><strong>Excellence Award</strong>, undergraduate capstone design
+            competition, KICS Fall Conference &mdash; generative-AI-based monitoring
+            service for real-time processes</td>
+      </tr>
+      <tr>
+        <td>2025-10-16</td>
+        <td><strong>Encouragement Award</strong>, Daejeon Creative Capstone Design
+            Competition &mdash; deep-learning strawberry ripeness classification and
+            harvesting robot</td>
+      </tr>
+      <tr>
+        <td>2025-07-07</td>
+        <td>Industry&ndash;academia project &mdash; performance testing and optimization
+            of autonomous parking-robot operating software</td>
+      </tr>
+      <tr>
+        <td>2024-01&ndash;07</td>
+        <td>Three SW special lectures, Software-Oriented University program
+            (coding tests, algorithms, information security)</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ---------------- 7. Contact ---------------- -->
+<section id="contact">
+  <h2><span class="secno">7.</span> Contact<a class="anchor" href="#contact" aria-label="Permalink to Contact">&para;</a></h2>
+
+  <dl class="facts">
+    <dt>Email</dt>
+    <dd><a href="mailto:bmw5779@o365.hanbat.ac.kr">bmw5779@o365.hanbat.ac.kr</a>
+        <button type="button" class="js-copy" data-copy="bmw5779@o365.hanbat.ac.kr">copy</button></dd>
+    <dt>Google Scholar</dt>
+    <dd><a href="https://scholar.google.com/citations?user=ATNX478AAAAJ&amp;hl=ko">citations?user=ATNX478AAAAJ</a></dd>
+    <dt>GitHub</dt>
+    <dd><a href="https://github.com/dovi0129">github.com/dovi0129</a></dd>
+    <dt>Laboratory</dt>
+    <dd><a href="https://sites.google.com/view/ecoai/introduction?authuser=0">Eco AI Lab</a>,
+        Hanbat National University, Daejeon, Republic of Korea</dd>
+  </dl>
+
+  <p>
+    I am glad to hear about collaborations, industrial datasets with closed-loop
+    control logs, and questions about any of the work above.
+  </p>
+</section>
+
+<!-- ---------------- 8. Colophon ---------------- -->
+<section id="colophon">
+  <h2><span class="secno">8.</span> Colophon<a class="anchor" href="#colophon" aria-label="Permalink to Colophon">&para;</a></h2>
+
+  <p>
+    This page is hand-written HTML and CSS with about two hundred lines of
+    vanilla JavaScript. No frameworks, no web fonts, no analytics, no cookies.
+    It is one HTML file, one stylesheet, and one script &mdash; under 60&nbsp;kB
+    in total, served as static files. Everything
+    except the section highlighting, the publication filter, and the copy buttons
+    works with JavaScript disabled.
+  </p>
+
+  <table class="grid">
+    <caption>Table 3. Keyboard shortcuts.</caption>
+    <colgroup><col class="col-key"><col></colgroup>
+    <tbody>
+      <tr><th scope="row"><kbd>j</kbd> / <kbd>k</kbd></th><td>next / previous section</td></tr>
+      <tr><th scope="row"><kbd>g</kbd> / <kbd>G</kbd></th><td>top / bottom of document</td></tr>
+      <tr><th scope="row"><kbd>/</kbd></th><td>filter the publication list</td></tr>
+      <tr><th scope="row"><kbd>Esc</kbd></th><td>clear the filter</td></tr>
+      <tr><th scope="row"><kbd>Tab</kbd></th><td>walk every link and control, in reading order</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    The source is at
+    <a href="https://github.com/dovi0129/dovi0129.github.io">github.com/dovi0129/dovi0129.github.io</a>.
+    Printing this page drops the navigation and prints link targets in full.
+  </p>
+</section>
+
+</main>
+</div><!-- /.layout -->
+
+<footer>
+  <hr>
+  <p>
+    Copyright &copy; 2026 Minu Baek &middot;
+    Last modified: 2026-07-27 &middot;
+    <a href="#content">Back to top</a>
+  </p>
+</footer>
+
+</div><!-- /.page -->
+
+<script src="site.js"></script>
 </body>
 </html>
